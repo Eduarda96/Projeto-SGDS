@@ -24,7 +24,7 @@
 		 
 		 <p class="email">
 			<label for="nome">E-mail:</label>
-			<input type="email" id="email"name="email">
+			<input type="email" id="email" required="required" name="email">
 		 </p>
 		 		 
 		 <p>		 
@@ -43,6 +43,9 @@
 		 <p class="submit">
 		 	<input type="submit" onclick="enviar(); "value="enviar">
 		 </p>
+	
+	
+
 
 	</form>
 </div>
