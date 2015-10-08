@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cadastro de setor</title>
+</head>
+<body>
+
+
+<div>
+	<form name="formcadrhsetor"> 
+	
+		<p class="nome">
+			<label for="nome">Nome</label>
+			<input type="texto" id="nome" required="required" name="nome">
+		 </p>
+		 
+		<p class="nomeResponsavel">
+			<label for="nome">Nome do Responsável</label>
+			<input type="texto" id="nomeResponsavel" required="required" name="nomeResponsavel">
+		 </p>
+		 
+		
+		 
+		 <p class="email">
+			<label for="nome">E-mail</label>
+			<input type="texto" id="email" required="required" name="email">
+		 </p>
+		 		 
+		 <p>		 
+		 	<label for= "setores">Setores</label>
+		 	<select name="setores">
+		 	<!-- aqui irão os setores cadastrados -->	
+		 	</select>
+		 </p>
+		
+		 <p class="descricao">
+			<label for="nome">Descrição</label></br>
+			<textarea maxlength="300">
+			</textarea>
+		 </p>
+		 
+		 <p class="submit">
+		 	<input type="submit" onclick="enviar(); "value="enviar">
+		 </p>
+	
+	
+
+
+	</form>
+</div>
+
+
+</body>
+</html>
