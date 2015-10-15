@@ -23,6 +23,7 @@ public class SetorDAO {
 			
 			comando.execute();
 			comando.close();
+			System.out.println("Setor cadastrado com sucesso");
 		} catch (SQLException e) {
 			System.out.println("Não foi possivel cadastrar!\n" + e.getMessage());
 		}
