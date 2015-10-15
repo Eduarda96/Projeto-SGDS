@@ -1,4 +1,4 @@
-package br.edu.ifrs.restinga.sgds.controle;
+package br.edu.ifrs.restinga.sgds.modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

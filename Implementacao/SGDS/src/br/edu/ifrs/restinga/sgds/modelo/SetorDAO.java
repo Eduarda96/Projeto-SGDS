@@ -1,10 +1,8 @@
-package br.edu.ifrs.restinga.sgds.controle;
+package br.edu.ifrs.restinga.sgds.modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import br.edu.ifrs.restinga.sgds.modelo.Setor;
 
 public class SetorDAO {
 	// Manipular classe Setor no Banco;
