@@ -41,7 +41,7 @@
 		 </p>
 		 
 		 <p class="submit">
-		 	<input type="submit" onclick="enviar(); "value="Enviar">
+		 	<input type="submit" onclick="enviar(); "value="enviar">
 		 </p>
 
 	</form>
