@@ -32,6 +32,8 @@ public class TestaListaAtivos extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        System.out.println("Nalo");
+    	
         try {
             List<Setor> lista = new ArrayList<Setor>();
             SetorDAO setorDao = new SetorDAO();

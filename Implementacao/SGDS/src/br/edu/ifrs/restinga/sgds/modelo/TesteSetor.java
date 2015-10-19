@@ -25,7 +25,6 @@ public class TesteSetor {
 
 		if (cod > 0) {
 			cadSetor.setSetorResponsavel(new SetorDAO().consultarSetor(cod));
-			System.out.println(cadSetor.getSetorResponsavel().getNome());
 		} else {
 			System.out.println("sem responsavel");
 			leitura.nextLine();
@@ -58,5 +57,4 @@ public class TesteSetor {
 			System.out.println("Descrição: " + mostrar.getDescricao());
 		}
 	}
-
 }

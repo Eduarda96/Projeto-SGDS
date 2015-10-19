@@ -28,7 +28,7 @@ public class SetorDAO {
 			}
 			comando.close();
 		} catch (SQLException e) {
-			System.out.println("Não foi possivel conectar " + e.getMessage());
+			System.out.println("Não foi possivel conectar!\n" + e.getMessage());
 		}
 		return ativos;
 	}
@@ -84,7 +84,7 @@ public class SetorDAO {
 			retornarSetor.setDescricao(retorno.getString("descricao"));
 			comando.close();
 		} catch (SQLException e) {
-			System.out.println("Não foi possivel conectar " + e.getMessage());
+			System.out.println("Não foi possivel conectar!\n" + e.getMessage());
 		}
 		return retornarSetor;
 	}
@@ -111,7 +111,7 @@ public class SetorDAO {
 			}
 			comando.close();
 		} catch (SQLException e) {
-			System.out.println("Não foi possivel conectar (Todos)" + e.getMessage());
+			System.out.println("Não foi possivel conectar!\n" + e.getMessage());
 		}
 		return setores;
 	}
