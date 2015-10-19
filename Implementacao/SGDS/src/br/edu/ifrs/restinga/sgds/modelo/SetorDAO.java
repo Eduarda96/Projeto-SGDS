@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class SetorDAO {
 	// Manipular classe Setor no Banco;
@@ -35,17 +34,24 @@ public class SetorDAO {
 	}
 
 	public void cadastrar(Setor setor) {
-		sql = "INSERT INTO SETOR (nome, nomeResponsavel, setorResponsavel, descricao, email, ativo) "
+		int subordinado;
+		if (setor.getSetorResponsavel() == null) {
+			subordinado = 0;
+		} else {
+			subordinado = consultarSetor(setor.getSetorResponsavel().getCodSetor()).getCodSetor();
+		}
+		sql = "INSERT INTO SETOR (nome, nomeResponsavel, descricao, email, ativo, setorResponsavel) "
 				+ "VALUES (?, ?, ?, ?, ?, ?);";
+
 		try {
 			comando = conexao.prepareStatement(sql);
 			comando.setString(1, setor.getNome());
 			comando.setString(2, setor.getNomeResponsavel());
-			comando.setInt(3, setor.getSetorResponsavel().getCodSetor());
-			comando.setString(4, setor.getDescricao());
-			comando.setString(5, setor.getEmail());
-			comando.setBoolean(6, true);
-
+			comando.setString(3, setor.getDescricao());
+			comando.setString(4, setor.getEmail());
+			comando.setBoolean(5, true);
+			comando.setInt(6, subordinado);
+			
 			comando.execute();
 			comando.close();
 			System.out.println("Setor cadastrado com sucesso");
@@ -64,13 +70,14 @@ public class SetorDAO {
 
 	public Setor consultarSetor(int codSetor) {
 		Setor retornarSetor = new Setor();
-		sql = "SELECT nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE codSetor = ?;";
+		sql = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE codSetor = ?;";
 
 		try {
 			comando = conexao.prepareStatement(sql);
 			comando.setInt(1, codSetor);
 			retorno = comando.executeQuery();
 			retorno.next();
+			retornarSetor.setCodSetor(retorno.getInt("codSetor"));
 			retornarSetor.setNome(retorno.getString("nome"));
 			retornarSetor.setNomeResponsavel(retorno.getString("nomeResponsavel"));
 			retornarSetor.setEmail(retorno.getString("email"));
@@ -82,7 +89,30 @@ public class SetorDAO {
 		return retornarSetor;
 	}
 
-	public void consultarTodosSetor() {
-
+	public List<Setor> consultarTodosSetor() {
+		sql = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE ativo = true;";
+		List<Setor> setores = new ArrayList<Setor>();
+		try {
+			comando = conexao.prepareStatement(sql);
+			retorno = comando.executeQuery();
+			while (retorno.next()) {
+				Setor setor = new Setor();
+				setor.setCodSetor(retorno.getInt("codSetor"));
+				setor.setNome(retorno.getString("nome"));
+				setor.setNomeResponsavel(retorno.getString("nomeResponsavel"));
+				if (retorno.getInt("setorResponsavel") > 0) {
+					setor.setSetorResponsavel(new SetorDAO().consultarSetor(retorno.getInt("setorResponsavel")));
+				} else {
+					setor.setSetorResponsavel(null);
+				}
+				setor.setDescricao(retorno.getString("descricao"));
+				setor.setEmail(retorno.getString("email"));
+				setores.add(setor);
+			}
+			comando.close();
+		} catch (SQLException e) {
+			System.out.println("Não foi possivel conectar (Todos)" + e.getMessage());
+		}
+		return setores;
 	}
 }
