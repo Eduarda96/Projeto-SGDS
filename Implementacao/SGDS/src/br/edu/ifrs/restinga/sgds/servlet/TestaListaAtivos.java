@@ -37,11 +37,17 @@ public class TestaListaAtivos extends HttpServlet {
         try {
             List<Setor> lista = new ArrayList<Setor>();
             SetorDAO setorDao = new SetorDAO();
+            String select = "";
+            
             lista.addAll(setorDao.listarSetorAtivo());
-            request.setAttribute("ativos", lista);
+            for(Setor enviar : lista) {
+            	select += "<option value=\"" + enviar.getCodSetor() + "\">" + enviar.getNome() + "</option>";
+            }
+            
+            request.setAttribute("ativos", select);
             request.getRequestDispatcher("TesteFormulario.jsp").forward(request, response);
         } catch (Exception e) {
-            request.getRequestDispatcher("index.html").forward(request, response);
+            request.getRequestDispatcher("cadastrosetor.html").forward(request, response);
         }
     }
 
