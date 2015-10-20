@@ -31,9 +31,7 @@
 			<p>
 				<label for="setores">Setores:</label>
 				<select name="setores">
-					<%
-						request.getAttribute("ativos");
-					%>
+					<%= request.getAttribute("ativos") %>
 					<!-- aqui irão os setores cadastrados -->
 				</select>
 			</p>

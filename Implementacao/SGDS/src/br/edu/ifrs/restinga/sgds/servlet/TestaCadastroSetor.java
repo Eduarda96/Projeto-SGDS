@@ -41,7 +41,7 @@ public class TestaCadastroSetor extends HttpServlet {
             
             dao.cadastrar(cadSetor);
         	
-            request.getRequestDispatcher("index.html").forward(request, response);
+            request.getRequestDispatcher("TestaListaAtivos").forward(request, response);
         } catch (Exception e) {
             request.getRequestDispatcher("index.html").forward(request, response);
         }

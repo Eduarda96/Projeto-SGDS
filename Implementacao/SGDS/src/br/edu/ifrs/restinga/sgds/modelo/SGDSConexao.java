@@ -10,9 +10,9 @@ public class SGDSConexao {
 		Connection conecta = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conecta = DriverManager.getConnection("jdbc:mysql://localhost/sgds_banco", "root", "cstads");
+			conecta = DriverManager.getConnection("jdbc:mysql://localhost/sgds_banco", "usersgds", "bundamole");
 		} catch (ClassNotFoundException e) {
-			System.out.println("Classe do driver2 não encontrada!\n" + e.getMessage());
+			System.out.println("Classe do driver não encontrada!\n" + e.getMessage());
 		} catch (SQLException ex) {
 			System.out.println("Não pode conectar!\n" + ex.getMessage());
 		}
