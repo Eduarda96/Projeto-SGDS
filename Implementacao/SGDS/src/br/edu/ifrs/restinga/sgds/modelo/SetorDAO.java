@@ -103,7 +103,7 @@ public class SetorDAO {
 				if (retorno.getInt("setorResponsavel") > 0) {
 					setor.setSetorResponsavel(new SetorDAO().consultarSetor(retorno.getInt("setorResponsavel")));
 				} else {
-					setor.setSetorResponsavel(null);
+					setor.setSetorResponsavel(new Setor());
 				}
 				setor.setDescricao(retorno.getString("descricao"));
 				setor.setEmail(retorno.getString("email"));
