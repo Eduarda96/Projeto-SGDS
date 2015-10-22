@@ -31,11 +31,17 @@ public class TestaCadastroSetor extends HttpServlet {
         
         try {
             Setor cadSetor = new Setor();
-            cadSetor.setNome("" + request.getAttribute("nome"));
-            cadSetor.setNomeResponsavel("" + request.getAttribute("nomeResponsavel"));
-            cadSetor.setEmail("" + request.getAttribute("email"));
-            cadSetor.setSetorResponsavel(new SetorDAO().consultarSetor(Integer.parseInt("" + request.getAttribute("setores"))));
-            cadSetor.setDescricao("" + request.getAttribute("descricao"));
+            cadSetor.setNome("" + request.getParameter("nome"));
+            cadSetor.setNomeResponsavel("" + request.getParameter("nomeResponsavel"));
+            cadSetor.setEmail("" + request.getParameter("email"));
+            
+            if(Integer.parseInt("" + request.getParameter("setores")) > 0) {
+            	cadSetor.setSetorResponsavel(new SetorDAO().consultarSetor(Integer.parseInt("" + request.getParameter("setores"))));
+            } else {
+            	cadSetor.setSetorResponsavel(null);
+            }
+            
+            cadSetor.setDescricao("" + request.getParameter("descricao"));
             
             SetorDAO dao = new SetorDAO();
             

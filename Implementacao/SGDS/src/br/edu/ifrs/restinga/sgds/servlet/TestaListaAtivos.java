@@ -35,7 +35,7 @@ public class TestaListaAtivos extends HttpServlet {
         try {
             List<Setor> lista = new ArrayList<Setor>();
             SetorDAO setorDao = new SetorDAO();
-            String select = "<option value=\"null\">Sem Responsavel</option>";
+            String select = "<option value=\"0\">Sem Responsavel</option>";
             
             lista.addAll(setorDao.listarSetorAtivo());
             for(Setor enviar : lista) {

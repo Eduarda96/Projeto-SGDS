@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div>
-		<form name="formcadrhsetor" action="TestaCadastroSetor">
+		<form name="formcadrhsetor" action="TestaCadastroSetor" method="post">
 
 			<p class="nome">
 				<label for="nome">Nome:</label>
