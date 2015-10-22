@@ -18,5 +18,6 @@
 				<th>Descrição
 		<tbody>
 		<%= request.getAttribute("lista") %>
+</table>
 </body>
 </html>

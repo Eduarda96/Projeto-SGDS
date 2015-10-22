@@ -30,10 +30,13 @@ public class TestaCadastroSetor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try {
-            Setor cadSetor = new Setor();
+            boolean erro = false;
+        	Setor cadSetor = new Setor();
             cadSetor.setNome("" + request.getParameter("nome"));
             cadSetor.setNomeResponsavel("" + request.getParameter("nomeResponsavel"));
-            cadSetor.setEmail("" + request.getParameter("email"));
+            if(!cadSetor.validaEmail("" + request.getParameter("email"))) {
+            	erro = true;
+            }
             
             if(Integer.parseInt("" + request.getParameter("setores")) > 0) {
             	cadSetor.setSetorResponsavel(new SetorDAO().consultarSetor(Integer.parseInt("" + request.getParameter("setores"))));
@@ -45,7 +48,12 @@ public class TestaCadastroSetor extends HttpServlet {
             
             SetorDAO dao = new SetorDAO();
             
-            dao.cadastrar(cadSetor);
+            if (!erro) {
+            	dao.cadastrar(cadSetor);
+            } else {
+            	request.getRequestDispatcher("erro.html").forward(request, response);
+            }
+            	
         	
             request.getRequestDispatcher("TestaListaAtivos").forward(request, response);
         } catch (Exception e) {

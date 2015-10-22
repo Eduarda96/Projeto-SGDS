@@ -44,7 +44,8 @@ public class ListaAtivos extends HttpServlet {
 						+ enviar.getSetorResponsavel().getNome() + "<th>" + enviar.getDescricao();
 			}
 			 request.setAttribute("lista", print);
-			 request.getRequestDispatcher("testaMostrarSetores.jsp").forward(request, response);
+			 //request.getRequestDispatcher("testaMostrarSetores.jsp").forward(request, response);
+			 request.getRequestDispatcher("tabela.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.getRequestDispatcher("index.html").forward(request, response);
 		}

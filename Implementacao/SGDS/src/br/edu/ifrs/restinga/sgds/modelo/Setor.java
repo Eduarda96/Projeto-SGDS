@@ -45,4 +45,27 @@ public class Setor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	//Validações
+	public boolean validarAlfabetico(String validar) {
+		char[] test = validar.toCharArray();
+		for (char t : test) {
+			if (!Character.isLetter(t)) {
+				return false;
+			}
+		}
+		return true; 
+	}
+	public boolean validaEmail(String validar) {
+		char[] test = validar.toCharArray();
+		for (char t : test) {
+			if (!Character.isLetterOrDigit(t)) {
+				if (!"@".equals(t)) {
+					return false;
+				}
+			}
+		}
+		setEmail(validar);
+		return true;
+	}
 }
