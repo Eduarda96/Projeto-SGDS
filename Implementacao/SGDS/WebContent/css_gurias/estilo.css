@@ -7,13 +7,12 @@
 }
 
 #menu ul {
-	padding:2px 10;
+	
 	margin:0px;
 	float: left;
-	width: 100%;
+	width: 97%;
 	background-color:yellowgreen;
 	list-style:none;
-	font:100% Verdana;
 	
 
 }
@@ -22,10 +21,13 @@
 	background-color:yellowgreen;
 	color: black;
 	text-decoration: none;
-	border-bottom:3px solid yellowgreen;
-	padding: 2px 10px;
 	float:left;
+	
 }
+
+#barraVermelha{
+	background-color: #C80000;
+} 
  
 #menu ul li a:hover {
 	background-color:#C0C0C0;
@@ -34,9 +36,9 @@
 }
 
 #tabela {
-	left: 40%;
+	left: 35%;
 	margin-left: -100px; /* A metade de sua largura. */
-	position: absolute;
+	position: absolute	;
 	width: 200px;
 	padding: 150px 10px;
 }
@@ -44,9 +46,6 @@
 #tabela  table{
 	width:560px;
 	height:150px;
-
-	
-	
 }
 	
 	
