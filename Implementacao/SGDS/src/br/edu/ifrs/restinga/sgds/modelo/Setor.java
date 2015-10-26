@@ -1,5 +1,7 @@
 package br.edu.ifrs.restinga.sgds.modelo;
 
+import org.eclipse.jdt.internal.compiler.problem.ShouldNotImplement;
+
 public class Setor {
 //Classe para manipulação do setor;
 	private int codSetor;
@@ -65,14 +67,23 @@ public class Setor {
 	}
 	public boolean validaEmail(String validar) {
 		char[] test = validar.toCharArray();
+		int cont = 0, arro = 0;
 		for (char t : test) {
+			cont++;
 			if (!Character.isLetterOrDigit(t)) {
-				if (!"@".equals(t)) {
+				if (Character.toString(t).equals("@") && cont > 1) {
+					arro++;
+				} else if (!(Character.toString(t).equals(".") || Character.toString(t).equals("-") || Character.toString(t).equals("_"))) {
+					System.out.println(t);
 					return false;
 				}
 			}
 		}
-		setEmail(validar);
-		return true;
+		if (arro == 1) {
+			setEmail(validar);
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

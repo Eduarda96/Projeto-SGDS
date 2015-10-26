@@ -1,4 +1,4 @@
-<%@include file="cabecalho.html" %>
+<%@include file="cabecalho.jsp" %>
 
 <div id="tabela">
 <table border ="1">
@@ -17,4 +17,4 @@
 </div>
 
 
-<%@include file="rodape.html" %>
+<%@include file="rodape.jsp" %>

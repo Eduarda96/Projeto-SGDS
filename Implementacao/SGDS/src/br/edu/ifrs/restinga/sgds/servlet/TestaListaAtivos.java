@@ -45,7 +45,8 @@ public class TestaListaAtivos extends HttpServlet {
             request.setAttribute("ativos", select);
             request.getRequestDispatcher("TesteFormulario.jsp").forward(request, response);
         } catch (Exception e) {
-            request.getRequestDispatcher("cadastrosetor.html").forward(request, response);
+            request.setAttribute("erro", e.getMessage());
+        	request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
     }
 

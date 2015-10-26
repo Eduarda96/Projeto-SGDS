@@ -39,17 +39,27 @@ public class ListaAtivos extends HttpServlet {
 
 			lista.addAll(setorDao.consultarSetoresAtivos());
 			for (Setor enviar : lista) {
-				print += "<tr><td>" + enviar.getCodSetor() + "<td>" + enviar.getNome() + "<td>"
-						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail() + "<td>";
-				if (enviar.getSetorResponsavel().getNome() == null) {
-					print += "Não informado.";
-				} else {
-					print += enviar.getSetorResponsavel().getNome();
-				}
-				print += "<td>" + enviar.getDescricao() + "<td>";
+//				print += "<tr><td>" + enviar.getCodSetor() + "<td>" + enviar.getNome() + "<td>"
+//						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail() + "<td>";
+//				if (enviar.getSetorResponsavel().getNome() == null) {
+//					print += "Não informado.";
+//				} else {
+//					print += enviar.getSetorResponsavel().getNome();
+//				}
+//				print += "<td>" + enviar.getDescricao() + "<td><div class=\"divColunaEditar\"><ul>"
+//						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
+//						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
+//						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
+				print += "<tr><td>" + enviar.getNome() + "<td>"
+						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail();
+				print += "<td><div class=\"divColunaEditar\"><ul>"
+						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
+						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
+						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
+				
 			}
 			 request.setAttribute("lista", print);
-			 request.getRequestDispatcher("tabela.jsp").forward(request, response);
+			 request.getRequestDispatcher("listaSetores.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);

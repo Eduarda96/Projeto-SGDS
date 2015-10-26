@@ -30,9 +30,11 @@ public class TestaCadastroSetor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try {
-            boolean erro = false;
+            String mens_erro = "";
+        	boolean erro = false;
         	Setor cadSetor = new Setor();
-            cadSetor.setNome("" + request.getParameter("nome"));
+            //if()
+        	cadSetor.setNome("" + request.getParameter("nome"));
             cadSetor.setNomeResponsavel("" + request.getParameter("nomeResponsavel"));
             if(!cadSetor.validaEmail("" + request.getParameter("email"))) {
             	erro = true;
@@ -51,13 +53,15 @@ public class TestaCadastroSetor extends HttpServlet {
             if (!erro) {
             	dao.cadastrar(cadSetor);
             } else {
-            	request.getRequestDispatcher("erro.html").forward(request, response);
+            	request.setAttribute("erro", "Email invalido.");
+            	request.getRequestDispatcher("erro.jsp").forward(request, response);
             }
             	
         	
             request.getRequestDispatcher("TestaListaAtivos").forward(request, response);
         } catch (Exception e) {
-            request.getRequestDispatcher("index.html").forward(request, response);
+            request.setAttribute("erro", e.getMessage());
+        	request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
     }
 
