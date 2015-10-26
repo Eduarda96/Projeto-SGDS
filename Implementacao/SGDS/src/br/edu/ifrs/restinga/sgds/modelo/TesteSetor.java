@@ -38,7 +38,7 @@ public class TesteSetor {
 		dao.cadastrar(cadSetor);
 
 		ArrayList<Setor> setores = new ArrayList<Setor>();
-		setores.addAll(dao.consultarTodosSetor());
+		setores.addAll(dao.consultarSetoresAtivos());
 
 		for (Setor mostrar : setores) {
 			System.out.println("\n========================= SETORES =========================\n");

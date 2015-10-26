@@ -8,6 +8,7 @@ public class Setor {
 	private Setor setorResponsavel;
 	private String descricao;
 	private String email;
+	private boolean ativo;
 	
 	public int getCodSetor() {
 		return codSetor;
@@ -44,6 +45,12 @@ public class Setor {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public boolean getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 	
 	//Validações

@@ -16,7 +16,7 @@ import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 /**
  * Servlet implementation class ListaAtivos
  */
-@WebServlet(name = "listaativos.do", urlPatterns = { "/listaativos.do" })
+@WebServlet(name = "listaAtivos.do", urlPatterns = { "/listaAtivos.do" })
 public class ListaAtivos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,17 +37,22 @@ public class ListaAtivos extends HttpServlet {
 			SetorDAO setorDao = new SetorDAO();
 			String print = "";
 
-			lista.addAll(setorDao.consultarTodosSetor());
+			lista.addAll(setorDao.consultarSetoresAtivos());
 			for (Setor enviar : lista) {
-				print += "<tr><th>" + enviar.getCodSetor() + "<th>" + enviar.getNome() + "<th>"
-						+ enviar.getNomeResponsavel() + "<th>" + enviar.getEmail() + "<th>"
-						+ enviar.getSetorResponsavel().getNome() + "<th>" + enviar.getDescricao();
+				print += "<tr><td>" + enviar.getCodSetor() + "<td>" + enviar.getNome() + "<td>"
+						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail() + "<td>";
+				if (enviar.getSetorResponsavel().getNome() == null) {
+					print += "Não informado.";
+				} else {
+					print += enviar.getSetorResponsavel().getNome();
+				}
+				print += "<td>" + enviar.getDescricao() + "<td>";
 			}
 			 request.setAttribute("lista", print);
-			 //request.getRequestDispatcher("testaMostrarSetores.jsp").forward(request, response);
 			 request.getRequestDispatcher("tabela.jsp").forward(request, response);
 		} catch (Exception e) {
-			request.getRequestDispatcher("index.html").forward(request, response);
+			request.setAttribute("erro", e.getMessage());
+			request.getRequestDispatcher("erro.jsp").forward(request, response);
 		}
 
 	}
@@ -62,24 +67,6 @@ public class ListaAtivos extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		processRequest(request, response);
-		// try {
-		// List<Setor> lista = new ArrayList<Setor>();
-		// SetorDAO setorDao = new SetorDAO();
-		// String select = "<option value=\"0\">Sem Responsavel</option>";
-		//
-		// lista.addAll(setorDao.listarSetorAtivo());
-		// for(Setor enviar : lista) {
-		// select += "<option value=\"" + enviar.getCodSetor() + "\">" +
-		// enviar.getNome() + "</option>";
-		// }
-		//
-		// request.setAttribute("ativos", select);
-		// request.getRequestDispatcher("TesteFormulario.jsp").forward(request,
-		// response);
-		// } catch (Exception e) {
-		// request.getRequestDispatcher("cadastrosetor.html").forward(request,
-		// response);
-		// }
 	}
 
 	/**

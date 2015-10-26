@@ -89,7 +89,7 @@ public class SetorDAO {
 		return retornarSetor;
 	}
 
-	public List<Setor> consultarTodosSetor() {
+	public List<Setor> consultarSetoresAtivos() {
 		sql = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE ativo = true;";
 		List<Setor> setores = new ArrayList<Setor>();
 		try {
@@ -107,6 +107,7 @@ public class SetorDAO {
 				}
 				setor.setDescricao(retorno.getString("descricao"));
 				setor.setEmail(retorno.getString("email"));
+				setor.setAtivo(retorno.getBoolean("ativo"));
 				setores.add(setor);
 			}
 			comando.close();
