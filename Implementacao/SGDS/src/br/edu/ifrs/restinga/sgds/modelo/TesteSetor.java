@@ -24,7 +24,7 @@ public class TesteSetor {
 		leitura.nextLine();
 
 		if (cod > 0) {
-			cadSetor.setSetorResponsavel(new SetorDAO().consultarSetor(cod));
+			//cadSetor.setSetorResponsavel(new SetorDAO().consultarSetor(cod));
 		} else {
 			System.out.println("sem responsavel");
 			leitura.nextLine();
@@ -35,10 +35,10 @@ public class TesteSetor {
 		cadSetor.setDescricao(leitura.nextLine());
 
 		SetorDAO dao = new SetorDAO();
-		dao.cadastrar(cadSetor);
+		//dao.cadastrar(cadSetor);
 
 		ArrayList<Setor> setores = new ArrayList<Setor>();
-		setores.addAll(dao.consultarSetoresAtivos());
+		//setores.addAll(dao.consultarSetoresAtivos());
 
 		for (Setor mostrar : setores) {
 			System.out.println("\n========================= SETORES =========================\n");

@@ -1,4 +1,4 @@
-package br.edu.ifrs.restinga.sgds.servlet;
+package br.edu.ifrs.restinga.sgds.controle;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,25 +14,18 @@ import br.edu.ifrs.restinga.sgds.modelo.Setor;
 import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 
 /**
- * Servlet implementation class TestaListaAtivos
+ * Servlet implementation class SelecaoSetoresResponsaveis
  */
-@WebServlet("/TestaListaAtivos")
-public class TestaListaAtivos extends HttpServlet {
+@WebServlet(name = "selecaoSetoresResponsaveis", urlPatterns = { "/selecaoSetoresResponsaveis" })
+public class SelecaoSetoresResponsaveis extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TestaListaAtivos() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        try {
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
             List<Setor> lista = new ArrayList<Setor>();
             SetorDAO setorDao = new SetorDAO();
             String select = "<option value=\"0\">Sem Responsavel</option>";
@@ -48,15 +41,15 @@ public class TestaListaAtivos extends HttpServlet {
             request.setAttribute("erro", e.getMessage());
         	request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
-    }
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		processRequest(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		service(request, response);
 	}
 
 	/**
@@ -65,7 +58,7 @@ public class TestaListaAtivos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		processRequest(request, response);
+		service(request, response);
 	}
 
 }

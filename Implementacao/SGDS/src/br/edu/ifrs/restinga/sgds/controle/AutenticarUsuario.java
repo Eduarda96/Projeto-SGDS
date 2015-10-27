@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class AutenticaUsuario
  */
 @WebServlet(name = "autenticaUsuario", urlPatterns = { "/autenticaUsuario" })
-public class AutenticaUsuario extends HttpServlet {
+public class AutenticarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

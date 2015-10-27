@@ -1,4 +1,4 @@
-package br.edu.ifrs.restinga.sgds.servlet;
+package br.edu.ifrs.restinga.sgds.controle;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,34 +11,24 @@ import br.edu.ifrs.restinga.sgds.modelo.Setor;
 import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 
 /**
- * Servlet implementation class TestaCadastroSetor
+ * Servlet implementation class CadastrarSetor
  */
-@WebServlet("/TestaCadastroSetor")
-public class TestaCadastroSetor extends HttpServlet {
+@WebServlet(name = "cadastrarSetor", urlPatterns = { "/cadastrarSetor" })
+public class CadastrarSetor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TestaCadastroSetor() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-    protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        try {
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
             String mens_erro = "";
         	boolean erro = false;
         	Setor cadSetor = new Setor();
-            //if()
-        	cadSetor.setNome("" + request.getParameter("nome"));
+            cadSetor.setNome("" + request.getParameter("nome"));
             cadSetor.setNomeResponsavel("" + request.getParameter("nomeResponsavel"));
-//            if(!cadSetor.validaEmail("" + request.getParameter("email"))) {
-//            	erro = true;
-//            }
+            cadSetor.setEmail("" + request.getParameter("email"));
             
             if(Integer.parseInt("" + request.getParameter("setores")) > 0) {
             	cadSetor.setSetorResponsavel(new SetorDAO().consultarSetor(Integer.parseInt("" + request.getParameter("setores"))));
@@ -48,12 +38,21 @@ public class TestaCadastroSetor extends HttpServlet {
             
             cadSetor.setDescricao("" + request.getParameter("descricao"));
             
+            if(!cadSetor.validarNomeSetor()) {
+            	mens_erro += "Nome do setor invalido!</ br>";
+            	erro = true;
+            }
+            if(!cadSetor.validaEmail()) {
+            	mens_erro += "Email do setor invalido!</ br>";
+            	erro = true;
+            }
+            
             SetorDAO dao = new SetorDAO();
             
             if (!erro) {
             	dao.cadastrar(cadSetor);
             } else {
-            	request.setAttribute("erro", "Email invalido.");
+            	request.setAttribute("erro", mens_erro);
             	request.getRequestDispatcher("erro.jsp").forward(request, response);
             }
             	
@@ -63,14 +62,14 @@ public class TestaCadastroSetor extends HttpServlet {
             request.setAttribute("erro", e.getMessage());
         	request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
-    }
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		service(request, response);
 	}
 
@@ -79,7 +78,7 @@ public class TestaCadastroSetor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		doGet(request, response);
 		service(request, response);
 	}
 

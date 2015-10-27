@@ -16,14 +16,14 @@ import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 /**
  * Servlet implementation class ListaAtivos
  */
-@WebServlet(name = "listaSetoresAtivos", urlPatterns = { "/listaSetoresAtivos" })
-public class ListaSetoresAtivos extends HttpServlet {
+@WebServlet(name = "listarSetoresAtivos", urlPatterns = { "/listarSetoresAtivos" })
+public class ListarSetoresAtivos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ListaSetoresAtivos() {
+	public ListarSetoresAtivos() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

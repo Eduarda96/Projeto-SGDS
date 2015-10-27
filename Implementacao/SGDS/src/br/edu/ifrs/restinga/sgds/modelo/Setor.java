@@ -56,19 +56,19 @@ public class Setor {
 	}
 	
 	//Validações
-	public boolean validarAlfabetico(String validar) {
-		char[] test = validar.toCharArray();
-		for (char t : test) {
+	public boolean validarNomeSetor() {
+		//char[] test = this.nome.toCharArray();
+		for (char t : this.nome.toCharArray()) {
 			if (!Character.isLetter(t)) {
 				return false;
 			}
 		}
 		return true; 
 	}
-	public boolean validaEmail(String validar) {
-		char[] test = validar.toCharArray();
+	public boolean validaEmail() {
+		//char[] test = this.email.toCharArray();
 		int cont = 0, arro = 0;
-		for (char t : test) {
+		for (char t : this.email.toCharArray()) {
 			cont++;
 			if (!Character.isLetterOrDigit(t)) {
 				if (Character.toString(t).equals("@") && cont > 1) {
@@ -80,7 +80,6 @@ public class Setor {
 			}
 		}
 		if (arro == 1) {
-			setEmail(validar);
 			return true;
 		} else {
 			return false;
