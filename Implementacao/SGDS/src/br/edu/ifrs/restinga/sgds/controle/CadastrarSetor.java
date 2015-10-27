@@ -39,11 +39,11 @@ public class CadastrarSetor extends HttpServlet {
             cadSetor.setDescricao("" + request.getParameter("descricao"));
             
             if(!cadSetor.validarNomeSetor()) {
-            	mens_erro += "Nome do setor invalido!</ br>";
+            	mens_erro += "Erro: Nome do setor invalido!<br>";
             	erro = true;
             }
             if(!cadSetor.validaEmail()) {
-            	mens_erro += "Email do setor invalido!</ br>";
+            	mens_erro += "Erro: Email do setor invalido!<br>";
             	erro = true;
             }
             
