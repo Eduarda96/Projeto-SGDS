@@ -19,7 +19,7 @@ public class AutenticarUsuario extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("mainMenu.jsp").forward(request, response);
+		request.getRequestDispatcher("main.jsp").forward(request, response);
 	}
 
 	/**

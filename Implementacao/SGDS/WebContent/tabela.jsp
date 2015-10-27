@@ -1,20 +1,17 @@
 <%@include file="cabecalho.jsp" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div id="tabela">
 <table border ="1">
 <tr>
-<th> CÛdigo do Setor </th>
+<th> C√≥digo do Setor </th>
 <th> Nome do Setor </th>
-<th> Nome do Respons·vel </th>
+<th> Nome do Respons√°vel </th>
 <th> E-mail </th>
-<th> Setor Respons·vel </th>
-<th> DescriÁ„o </th>
+<th> Setor Respons√°vel </th>
+<th> Descri√ß√£o </th>
 <th> Editar </th>
 </tr>
-
 <%= request.getAttribute("lista") %>
-
 </div>
-
-
 <%@include file="rodape.jsp" %>

@@ -57,7 +57,7 @@ public class CadastrarSetor extends HttpServlet {
             }
             	
         	
-            request.getRequestDispatcher("TestaListaAtivos").forward(request, response);
+            request.getRequestDispatcher("listarSetoresAtivos").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("erro", e.getMessage());
         	request.getRequestDispatcher("erro.jsp").forward(request, response);

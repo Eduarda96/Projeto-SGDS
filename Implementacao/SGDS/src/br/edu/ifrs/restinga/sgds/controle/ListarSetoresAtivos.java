@@ -47,7 +47,7 @@ public class ListarSetoresAtivos extends HttpServlet {
 						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
 			}
 			 request.setAttribute("lista", print);
-			 request.getRequestDispatcher("listaSetores.jsp").forward(request, response);
+			 request.getRequestDispatcher("listasetores.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
