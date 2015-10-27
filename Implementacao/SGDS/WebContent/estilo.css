@@ -1,97 +1,228 @@
-#menu ul li { display: inline; }
+*{		
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing:border-box;
+	font-family: "Verdana" ;
+	font-size: 14px;
 
-
-#menu li:hover{
-	background-color: red;
-	color:green;
 }
 
-#menu ul {
-	
-	margin:0px;
-	float: left;
-	width: 97%;
-	background-color:yellowgreen;
-	list-style:none;
-	
-
-}
- 
-#menu ul li a {
-	background-color:yellowgreen;
-	color: black;
-	text-decoration: none;
-	float:left;
-	
+body{
+	background-color: lightgray;
 }
 
-#barraVermelha{
-	background-color: #C80000;
-} 
- 
-#menu ul li a:hover {
-	background-color:#C0C0C0;
-	color: #6D6D6D;
+#formLogin{
+	
+	position:absolute;
+    left:50%;
+    top:50%;
+	width: 300px;
+	height: 200px;
+	margin-left:-150px;
+    margin-top:-100px;
 	
 }
 
-#tabela {
-	left: 35%;
-	margin-left: -100px; /* A metade de sua largura. */
-	position: absolute	;
+fieldset{
+	padding-top: 15px;
+	border: solid 1px #000;
+	border-color: yellowgreen;
+	margin-top: 10px;
+}
+
+#login{
+	width: 100%;
+	height: 100px;
+	border-color:solid 1px black; 
+}
+
+#loginBanner{
+	background-image: url("./imagens/logoLogin300x100.png");
+	background-color: transparent;
+	background-size: 100% 100%;
+	height: 100px;
+	width: 300px;
+}
+
+label {
+	position: relative;
+	margin: auto;
+	display: inline-block;
+	font-size: 0.9em;
+	font-weight: bold;
+	
+}
+
+.labelLogin {
+	width: 55px;
+}
+
+input, textarea {
+	display: inline-block;
 	width: 200px;
-	padding: 150px 10px;
 }
 
-#tabela  table{
-	width:560px;
-	height:150px;
+#checkbox{
+	width: 15px;
 }
 
-.iconeEditar, .iconeVisualizar, .iconeDeletar{
-    height: 15px;
-    width: 15px;
-    margin: auto;
+input:focus {
+	border-color: tomato;
+	box-shadow: 0 0 5px #35861B;
+	outline: none;
 }
 
-.iconeEditar{
-    background: url("./imagens/botaoEditar.png") no-repeat;
+#botaoLogar {
+	width: 70px;
+	float: right;
+	margin-right: 15px;
 }
 
-.iconeVisualizar{
-    background: url("./imagens/botaoVisualizar.png") no-repeat;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#all {
+	margin: 0 auto;
+	width: 1000px;
+}
+header {
+	background-image: url("./imagens/bannerHeader.png");
+	background-color: white;
+	background-size: 100% 100%;
+	height: 100px;
+	width: 100%;
+	border: solid 1px;
 }
 
-.iconeDeletar{
-    background: url("./imagens/botaoDeletar.png") no-repeat;
+#main {
+	min-height: 500px;
+	width: 100%;
+	background-color: white;
+	border-left: solid 1px;
+	border-right: solid 1px;
+	margin-bottom: 0;
 }
 
-.colunaEditar{
-	background-color: rgba(139, 137, 137, .0);
-    height: 30px;
-    text-align: right;
+footer {
+	background-color: yellowgreen;
+	margin-top: 0;
+	height: 50px;
+	width: 100%;
+	border: solid 1px;
 }
 
-.divColunaEditar ul{
-    padding: 0px;
-    margin: 0px;
-    list-style: none;
-    height: auto;
+#divForm{
+	margin: 0 auto;
+	position: absolute;
+	left:50%;
+    top:50%;
+	width: 400px;
+	height: 200px;
+	margin-left:-200px;
+    margin-top:-200px;
+} 
+
+#formCadastroSetor{
+	border: solid 1px;
+	padding-top: 15px;
+	padding-left: 15px;
 }
 
-.divColunaEditar ul li{
-    display: inline;
+.labelFormularioSetor {
+	width: 100px;
 }
 
-.divColunaEditar ul li a{
-    margin-top:5px;
-    margin-right: 5px;
-    width: auto;
-    display: inline-block;
-    /*visual do link*/
-    text-decoration: none;
+#labelDescricao{
+	margin-top: 0;
+	vertical-align: top;
 }
-	
-	
+
+textarea{
+	resize: none;
+}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+nav{
+
+	border-right: solid 1px;
+	border-left: solid 1px;
+	border-bottom: solid 1px;
+	background-color: lightgray;
+	width: 100%;
+	height:25px;
+}
+
+.menu{
+	margin: 0; 
+	padding: 0;
+	list-style: none;	
+	float:left;
+}
+
+.menu li{
+	width: 100px;
+	height: 25px;
+	position:relative;
+	float: left;
+	text-align: center;
+}
+
+.menu li a{
+	color:#333; 
+	text-decoration:nome; 
+	padding:5px 10px; 
+	display:block;
+}
+
+.menu li a:hover{
+	background-color: yellowgreen;
+	color: #fff;
+	-moz-box-shadow:0 3px 10px 0 #CCC;
+	-webkit-box-shadow:0 3px 10px 0 #ccc;
+	text-shadow:0px 0px 5px #fff;
+}
+
+.menu li ul{
+	margin: 0; padding: 0;
+	position:absolute;
+	top:25px;
+	left: 0;
+	background-color:#fff;
+	display:none;
+}
+
+.menu li:hover ul, .menu li.over ul{
+	display:block;
+}
+
+.menu li ul li{
+	border:1px solid #c0c0c0;
+	display: block;
+	width: 100px;
+}
