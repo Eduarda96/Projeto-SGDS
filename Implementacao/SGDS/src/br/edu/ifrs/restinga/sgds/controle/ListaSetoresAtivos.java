@@ -16,19 +16,19 @@ import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 /**
  * Servlet implementation class ListaAtivos
  */
-@WebServlet(name = "listaAtivos.do", urlPatterns = { "/listaAtivos.do" })
-public class ListaAtivos extends HttpServlet {
+@WebServlet(name = "listaSetoresAtivos", urlPatterns = { "/listaSetoresAtivos" })
+public class ListaSetoresAtivos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ListaAtivos() {
+	public ListaSetoresAtivos() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 
@@ -39,24 +39,12 @@ public class ListaAtivos extends HttpServlet {
 
 			lista.addAll(setorDao.consultarSetoresAtivos());
 			for (Setor enviar : lista) {
-//				print += "<tr><td>" + enviar.getCodSetor() + "<td>" + enviar.getNome() + "<td>"
-//						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail() + "<td>";
-//				if (enviar.getSetorResponsavel().getNome() == null) {
-//					print += "Não informado.";
-//				} else {
-//					print += enviar.getSetorResponsavel().getNome();
-//				}
-//				print += "<td>" + enviar.getDescricao() + "<td><div class=\"divColunaEditar\"><ul>"
-//						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
-//						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
-//						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
 				print += "<tr><td>" + enviar.getNome() + "<td>"
 						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail();
 				print += "<td><div class=\"divColunaEditar\"><ul>"
 						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
 						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
 						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
-				
 			}
 			 request.setAttribute("lista", print);
 			 request.getRequestDispatcher("listaSetores.jsp").forward(request, response);
@@ -76,7 +64,7 @@ public class ListaAtivos extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		processRequest(request, response);
+		service(request, response);
 	}
 
 	/**
@@ -88,7 +76,7 @@ public class ListaAtivos extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 
-		processRequest(request, response);
+		service(request, response);
 	}
 
 }
