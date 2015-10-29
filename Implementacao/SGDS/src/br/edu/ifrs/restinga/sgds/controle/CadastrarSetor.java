@@ -23,7 +23,8 @@ public class CadastrarSetor extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-            String mens_erro = "";
+            request.setCharacterEncoding("UTF-8");
+			String mens_erro = "";
         	boolean erro = false;
         	Setor cadSetor = new Setor();
         	System.out.println("nome"+request.getParameter("nome"));

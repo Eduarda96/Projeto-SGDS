@@ -57,6 +57,7 @@ public class Setor {
 	public boolean validarNomeSetor() {
 		//char[] test = this.nome.toCharArray();
 		for (char t : this.nome.toCharArray()) {
+			//if (!Character.isLetter(t) && (!("çÇáéíóúýÁÉÍÓÚÝàèìòùÀÈÌÒÙãõñäëïöüÿÄËÏÖÜÃÕÑâêîôûÂÊÎÔÛ").contains(Character.toString(t)))) {
 			if (!Character.isLetter(t)) {
 				return false;
 			}
