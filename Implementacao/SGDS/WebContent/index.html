@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="pt-br">
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="./css/estilo.css">
 		<title>Login</title>
 	</head>
-<body>
-	<div id="formLogin">
-		<form name="form_login" id="form_login" action="AutenticarUsuario" method="post" enctype="multipart/form-data">
-			<div id="loginBanner"></div>
-			<fieldset id="formularioLogin">
-				<p class="usuario">
-					<label for="usuario" class="labelLogin">Usuário:</label>
-					<input type="text" id="usuario" class="formularioLogin" required="required" name="usuario">
-				</p>
-				<p class="senha">
-					<label for="senha" class="labelLogin">Senha:</label>
-					<input type="password" id="senha" class="formularioLogin" required="required" name="senha">
-				</p>
-				<p class="submit">
-					<a href="#">Esqueci minha senha</a>
-					<input type="submit" id="botaoLogar" class="formularioLogin" onclick="enviar();" value="Entrar">
-				</p>
-			</fieldset>
-		</form>
-	</div>
-</body>
+	<body>
+		<div id="formLogin">
+			<form name="form_login" action="AutenticarUsuario" method="post">
+				<div id="loginBanner"></div>
+				<fieldset id="formularioLogin">
+					<p class="usuario">
+						<label for="usuario" class="labelLogin">Usuário:</label>
+						<input type="text" id="usuario" class="formularioLogin" required="required" name="usuario">
+					</p>
+					<p class="senha">
+						<label for="senha" class="labelLogin">Senha:</label>
+						<input type="password" id="senha" class="formularioLogin" required="required" name="senha">
+					</p>
+					<p class="submit">
+						<a href="#">Esqueci minha senha</a>
+						<input type="submit" id="botaoLogar" class="formularioLogin" onclick="enviar();" value="Entrar">
+					</p>
+				</fieldset>
+			</form>
+		</div>
+	</body>
 </html>

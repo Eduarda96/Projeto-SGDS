@@ -1,7 +1,5 @@
 package br.edu.ifrs.restinga.sgds.modelo;
 
-import org.eclipse.jdt.internal.compiler.problem.ShouldNotImplement;
-
 public class Setor {
 //Classe para manipulação do setor;
 	private int codSetor;

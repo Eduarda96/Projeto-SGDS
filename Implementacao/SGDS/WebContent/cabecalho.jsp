@@ -8,7 +8,7 @@
 <title>Main</title>
 </head>
 <body>
-	<div id="all">
+	<div id="cabecalho">
 		<header>
 			<div id="header"></div>
 			<nav>
@@ -19,7 +19,7 @@
 						</ul></li>
 					<li><a href="listarSetoresAtivos">Setor</a>
 						<ul>
-							<li><a href="selecaoSetoresResponsaveis">Incluir</a></li>
+							<li><a href="SelecaoSetoresResponsaveis">Incluir</a></li>
 							<li><a href="listarSetoresAtivos">Listar</a></li>
 						</ul></li>
 					<li><a href="#">Lista</a>
@@ -30,3 +30,4 @@
 				</ul>
 			</nav>
 		</header>
+	</div>

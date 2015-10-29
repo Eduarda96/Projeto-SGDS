@@ -13,7 +13,7 @@ import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 /**
  * Servlet implementation class CadastrarSetor
  */
-@WebServlet(name = "cadastrarSetor", urlPatterns = { "/cadastrarSetor" })
+@WebServlet(name = "CadastrarSetor", urlPatterns = { "/CadastrarSetor" })
 public class CadastrarSetor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,17 +26,23 @@ public class CadastrarSetor extends HttpServlet {
             String mens_erro = "";
         	boolean erro = false;
         	Setor cadSetor = new Setor();
-            cadSetor.setNome("" + request.getParameter("nome"));
-            cadSetor.setNomeResponsavel("" + request.getParameter("nomeResponsavel"));
-            cadSetor.setEmail("" + request.getParameter("email"));
+        	System.out.println("nome"+request.getParameter("nome"));
+            cadSetor.setNome(request.getParameter("nome"));
             
+            System.out.println(request.getParameter("nomeResponsavel"));
+            cadSetor.setNomeResponsavel(request.getParameter("nomeResponsavel"));
+            
+            System.out.println(request.getParameter("email"));
+            cadSetor.setEmail(request.getParameter("email"));
+            
+            System.out.println("setor"+request.getParameter("setores"));
             if(Integer.parseInt("" + request.getParameter("setores")) > 0) {
             	cadSetor.setSetorResponsavel(new SetorDAO().consultarSetor(Integer.parseInt("" + request.getParameter("setores"))));
             } else {
             	cadSetor.setSetorResponsavel(null);
             }
-            
-            cadSetor.setDescricao("" + request.getParameter("descricao"));
+            System.out.println(request.getParameter("descricao"));
+            cadSetor.setDescricao(request.getParameter("descricao"));
             
             if(!cadSetor.validarNomeSetor()) {
             	mens_erro += "Erro: Nome do setor invalido!<br>";

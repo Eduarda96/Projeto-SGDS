@@ -1,11 +1,11 @@
 <%@include file="cabecalho.jsp" %>
 
 <div id="divForm">
-	<form name="formcadrhsetor" id="formCadastroSetor" action="cadastrarSetor" method="post" enctype="multipart/form-data"> 
+	<form name="formcadrhsetor" id="formCadastroSetor" action="CadastrarSetor" method="post"> 
 	
 		<p>
 			<label for="nome" class="labelFormularioSetor">Nome:</label>
-			<input type="texto" id="nome" class="inputFormularioSetor" required="required" name="nome">
+			<input type="text" id="nome" class="inputFormularioSetor" required="required" name="nome">
 		 </p>
 		 
 		<p>
@@ -27,7 +27,7 @@
 		
 		 <p>
 			<label for="decricao" class="labelFormularioSetor" id="labelDescricao" >Descrição:</label>
-			<textarea rows="12" class="inputFormularioSetor">
+			<textarea rows="12" class="inputFormularioSetor" name="descricao">
 			</textarea>
 		 </p>
 		 
