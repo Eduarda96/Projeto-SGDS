@@ -69,7 +69,7 @@ public class Setor {
 		int cont = 0, arro = 0;
 		for (char t : this.email.toCharArray()) {
 			cont++;
-			if (!Character.isLetterOrDigit(t)) {
+			if (!Character.isLetterOrDigit(t) || this.email != "") {
 				if (Character.toString(t).equals("@") && cont > 1 && cont < this.email.toCharArray().length) {
 					arro++;
 				} else if (!(Character.toString(t).equals(".") || Character.toString(t).equals("-") || Character.toString(t).equals("_"))) {
