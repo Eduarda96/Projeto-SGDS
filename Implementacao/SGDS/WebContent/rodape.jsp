@@ -1,3 +1,4 @@
+	<div id="rodape">
 		<footer>
 		</footer>
 	</div>

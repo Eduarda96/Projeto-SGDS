@@ -16,7 +16,7 @@ import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 /**
  * Servlet implementation class SelecaoSetoresResponsaveis
  */
-@WebServlet(name = "selecaoSetoresResponsaveis", urlPatterns = { "/selecaoSetoresResponsaveis" })
+@WebServlet(name = "SelecaoSetoresResponsaveis", urlPatterns = { "/SelecaoSetoresResponsaveis" })
 public class SelecaoSetoresResponsaveis extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class SelecaoSetoresResponsaveis extends HttpServlet {
 		try {
             List<Setor> lista = new ArrayList<Setor>();
             SetorDAO setorDao = new SetorDAO();
-            String select = "<option value=\"0\">Sem Responsavel</option>";
+            String select = "<option value=\"0\">Sem1 Responsavel</option>";
             
             lista.addAll(setorDao.selecaoSetorResponsavel());
             for(Setor enviar : lista) {

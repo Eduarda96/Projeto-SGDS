@@ -23,8 +23,8 @@ public class AutenticarUsuario extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			String login = request.getParameter("usuario");
-			String password = request.getParameter("senha");
+			//String login = request.getParameter("usuario");
+			//String password = request.getParameter("senha");
 			request.getRequestDispatcher("main.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("erro", "Não chama o jsp");
