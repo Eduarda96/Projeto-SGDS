@@ -39,7 +39,7 @@ fieldset{
 }
 
 #loginBanner{
-	background-image: url("./imagens/logoLogin300x100.png");
+	background-image: url("../img/logoLogin300x100.png");
 	background-color: transparent;
 	background-size: 100% 100%;
 	height: 100px;
@@ -100,15 +100,15 @@ input:focus {
 }
 
 .iconeEditar{
-    background: url("./imagens/botaoEditar.png") no-repeat;
+    background: url("../img/botaoEditar.png") no-repeat;
 }
 
 .iconeVisualizar{
-    background: url("./imagens/botaoVisualizar.png") no-repeat;
+    background: url("../img/botaoVisualizar.png") no-repeat;
 }
 
 .iconeDeletar{
-    background: url("./imagens/botaoDeletar.png") no-repeat;
+    background: url("../img/botaoDeletar.png") no-repeat;
 }
 
 .colunaEditar{
@@ -154,8 +154,17 @@ input:focus {
 	margin: 0 auto;
 	width: 1000px;
 }
-header {
-	background-image: url("./imagens/bannerHeader.png");
+/* header {
+	background-image: url("../img/bannerHeader.png");
+	background-color: white;
+	background-size: 100% 100%;
+	height: 100px;
+	width: 100%;
+	border: solid 1px;
+} */
+
+#header {
+	background-image: url("../img/bannerHeader.png");
 	background-color: white;
 	background-size: 100% 100%;
 	height: 100px;

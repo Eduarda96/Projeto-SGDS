@@ -36,7 +36,7 @@ public class SelecaoSetoresResponsaveis extends HttpServlet {
             }
             
             request.setAttribute("ativos", select);
-            request.getRequestDispatcher("TesteFormulario.jsp").forward(request, response);
+            request.getRequestDispatcher("cadastrosetor.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("erro", e.getMessage());
         	request.getRequestDispatcher("erro.jsp").forward(request, response);

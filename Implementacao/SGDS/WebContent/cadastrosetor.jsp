@@ -1,8 +1,7 @@
 <%@include file="cabecalho.jsp" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 <div id="divForm">
-	<form name="formcadrhsetor" id="formCadastroSetor" action="cadastrarSetor"> 
+	<form name="formcadrhsetor" id="formCadastroSetor" action="cadastrarSetor" method="post" enctype="multipart/form-data"> 
 	
 		<p>
 			<label for="nome" class="labelFormularioSetor">Nome:</label>
@@ -10,7 +9,7 @@
 		 </p>
 		 
 		<p>
-			<label for="nome" class="labelFormularioSetor">Respons√°vel:</label>
+			<label for="nome" class="labelFormularioSetor">Respons·vel:</label>
 			<input type="text" id="nomeResponsavel" class="inputFormularioSetor" required="required" name="nomeResponsavel">
 		 </p> 
 		 
@@ -27,7 +26,7 @@
 		 </p>
 		
 		 <p>
-			<label for="decricao" class="labelFormularioSetor" id="labelDescricao" >Descri√ß√£o:</label>
+			<label for="decricao" class="labelFormularioSetor" id="labelDescricao" >DescriÁ„o:</label>
 			<textarea rows="12" class="inputFormularioSetor">
 			</textarea>
 		 </p>
@@ -39,4 +38,5 @@
 
 	</form>
 </div>
+
 <%@include file="rodape.jsp" %>
