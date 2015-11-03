@@ -23,6 +23,7 @@ public class AutenticarUsuario extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
+			request.setCharacterEncoding("UTF-8");
 			//String login = request.getParameter("usuario");
 			//String password = request.getParameter("senha");
 			request.getRequestDispatcher("main.jsp").forward(request, response);

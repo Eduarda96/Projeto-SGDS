@@ -1,8 +1,8 @@
 <%@include file="cabecalho.jsp" %>
 
 <div id="divForm">
-	<form name="formcadrhsetor" id="formCadastroSetor" action="CadastrarSetor" method="post"> 
-	
+	<form name="formcadrhsetor" id="formCadastroSetor" action="ControleSetor" method="post"> 
+		<input type="hidden" id="acao" name="acao" value="cadastrar">
 		<p>
 			<label for="nome" class="labelFormularioSetor">Nome:</label>
 			<input type="text" id="nome" class="inputFormularioSetor" required="required" name="nome">
