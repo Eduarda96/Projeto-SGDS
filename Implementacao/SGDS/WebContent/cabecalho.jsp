@@ -17,10 +17,10 @@
 						<ul>
 							<li><a href="#">Cadastrar</a></li>
 						</ul></li>
-					<li><a href="listarSetoresAtivos">Setor</a>
+					<li><a href="ControleSetor?acao=listar">Setor</a>
 						<ul>
-							<li><a href="SelecaoSetoresResponsaveis">Incluir</a></li>
-							<li><a href="listarSetoresAtivos">Listar</a></li>
+							<li><a href="ControleSetor?acao=selecao">Incluir</a></li>
+							<li><a href="ControleSetor?acao=listar">Listar</a></li>
 						</ul></li>
 					<li><a href="#">Lista</a>
 						<ul>

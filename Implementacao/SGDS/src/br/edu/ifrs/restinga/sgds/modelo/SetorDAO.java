@@ -16,28 +16,6 @@ public class SetorDAO {
 	private static final String sqlConsultarSetor = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE codSetor = ?;";
 	private static final String sqlConsultarSetoresAtivos = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE ativo = true;";
 	ResultSet retorno;
-	
-	public List<Setor> selecaoSetorResponsavel() throws Exception {
-		List<Setor> ativos = new ArrayList<Setor>();
-		Connection conexao = null;
-		try {
-			conexao =  SGDSConexao.getSGDSConexao();
-			comando = conexao.prepareStatement(sqlSelecaoSetorResponsavel);
-			retorno = comando.executeQuery();
-			while (retorno.next()) {
-				Setor setor = new Setor();
-				setor.setCodSetor(retorno.getInt("codSetor"));
-				setor.setNome(retorno.getString("nome"));
-				ativos.add(setor);
-			}
-		} catch (SQLException e) {
-			throw new Exception("Não foi possivel conectar!\n" + e.getMessage());
-		} finally {
-			if(comando != null) comando.close();
-			if(conexao != null) conexao.close();
-		}
-		return ativos;
-	}
 
 	public void cadastrar(Setor setor) throws Exception {
 		Connection conexao = null;
@@ -127,5 +105,27 @@ public class SetorDAO {
 			if(conexao != null) conexao.close();
 		}
 		return setores;
+	}
+	
+	public List<Setor> selecaoSetorResponsavel() throws Exception {
+		List<Setor> ativos = new ArrayList<Setor>();
+		Connection conexao = null;
+		try {
+			conexao =  SGDSConexao.getSGDSConexao();
+			comando = conexao.prepareStatement(sqlSelecaoSetorResponsavel);
+			retorno = comando.executeQuery();
+			while (retorno.next()) {
+				Setor setor = new Setor();
+				setor.setCodSetor(retorno.getInt("codSetor"));
+				setor.setNome(retorno.getString("nome"));
+				ativos.add(setor);
+			}
+		} catch (SQLException e) {
+			throw new Exception("Não foi possivel conectar!\n" + e.getMessage());
+		} finally {
+			if(comando != null) comando.close();
+			if(conexao != null) conexao.close();
+		}
+		return ativos;
 	}
 }
