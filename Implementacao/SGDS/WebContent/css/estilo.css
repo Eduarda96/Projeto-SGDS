@@ -143,31 +143,10 @@ input:focus {
     text-decoration: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 #all {
 	margin: 0 auto;
 	width: 1000px;
 }
-/* header {
-	background-image: url("../img/bannerHeader.png");
-	background-color: white;
-	background-size: 100% 100%;
-	height: 100px;
-	width: 100%;
-	border: solid 1px;
-} */
 
 #header {
 	background-image: url("../img/bannerHeader.png");
