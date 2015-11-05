@@ -99,9 +99,9 @@ input:focus {
 #tabela {
 	background-color: limegreen;
 	left: 35%;
-	margin: auto;
+	margin: 0 auto;
 	width: 560px;
-	padding: 150px 10px;
+	
 }
 
 #tabela  table{
