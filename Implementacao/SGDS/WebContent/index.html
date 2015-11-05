@@ -6,10 +6,11 @@
 		<title>Login</title>
 	</head>
 	<body>
+		
 		<div id="formLogin">
-			<form name="form_login" action="AutenticarUsuario" method="post">
-				<div id="loginBanner"></div>
-				<fieldset id="formularioLogin">
+			<div id="loginBanner"></div>
+			<form id="formularioLogin" name="form_login" action="AutenticarUsuario" method="post">
+				<fieldset id="campoLogin">
 					<p class="usuario">
 						<label for="usuario" class="labelLogin">Usuário:</label>
 						<input type="text" id="usuario" class="formularioLogin" required="required" name="usuario">
