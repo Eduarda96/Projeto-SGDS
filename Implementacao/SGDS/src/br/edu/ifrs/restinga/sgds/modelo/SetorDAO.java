@@ -16,7 +16,9 @@ public class SetorDAO {
 	private static final String sqlConsultarSetor = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE codSetor = ?;";
 	private static final String sqlConsultarSetoresAtivos = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE ativo = true;";
 	ResultSet retorno;
-
+	private static final String sqlDeletarSetor = "Drop SETOR where codSetor = ?";
+	
+			
 	public void cadastrar(Setor setor) throws Exception {
 		Connection conexao = null;
 		int subordinado;

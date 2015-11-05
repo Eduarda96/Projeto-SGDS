@@ -25,6 +25,7 @@ public class ControleSetor extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		String acao = request.getParameter("acao");
 		
 		switch (acao) {
@@ -46,10 +47,10 @@ public class ControleSetor extends HttpServlet {
 	protected void selecaoSetoresResponsaveis(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			request.setCharacterEncoding("UTF-8");
+			
 			List<Setor> selecao = new ArrayList<Setor>();
             SetorDAO selecaoDao = new SetorDAO();
-            String select = "<option value=\"0\">Sem Responsável</option>";
+            String select = "<option value=\"0\">Sem Respons�vel</option>";
             
             selecao.addAll(selecaoDao.selecaoSetorResponsavel());
             for(Setor enviar : selecao) {
@@ -76,8 +77,10 @@ public class ControleSetor extends HttpServlet {
 
 			listar.addAll(listarDao.consultarSetoresAtivos());
 			for (Setor enviar : listar) {
-				print += "<tr><td>" + enviar.getNome() + "<td>"
-						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail();
+				print += "<tr><td>" + enviar.getNome() + 
+						"<td>" + enviar.getSetorResponsavel().getNome() +
+						"<td>" + enviar.getNomeResponsavel() +
+						"<td>" + enviar.getEmail();
 				print += "<td><div class=\"divColunaEditar\"><ul>"
 						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
 						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
@@ -99,7 +102,7 @@ public class ControleSetor extends HttpServlet {
 			String mens_erro = "";
         	boolean erro = false;
         	Setor cadastrar = new Setor();
-        	//System.out.println("nome"+request.getParameter("nome"));
+        	//System.out.println("nome: "+request.getParameter("nome"));
             cadastrar.setNome(request.getParameter("nome"));
             
             //System.out.println(request.getParameter("nomeResponsavel"));
