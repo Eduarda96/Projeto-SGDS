@@ -85,7 +85,7 @@ public class Setor {
 
 	public boolean validaEmail() {
 		int cont = 0, arro = 0;
-		if (this.email != "") {
+		if (this.email.length() != 0) {
 			for (char t : this.email.toCharArray()) {
 				cont++;
 				if (!Character.isLetterOrDigit(t)) {
@@ -106,7 +106,7 @@ public class Setor {
 				return false;
 			}
 		} else {
-			return false;
+			return true;
 		}
 	}
 }

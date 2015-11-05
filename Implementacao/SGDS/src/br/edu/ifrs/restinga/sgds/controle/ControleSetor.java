@@ -110,6 +110,7 @@ public class ControleSetor extends HttpServlet {
             
             //System.out.println(request.getParameter("email"));
             cadastrar.setEmail(request.getParameter("email"));
+            //System.out.println(cadastrar.getEmail().length());
             
             //System.out.println("setor"+request.getParameter("setores"));
             if(Integer.parseInt("" + request.getParameter("setores")) > 0) {
