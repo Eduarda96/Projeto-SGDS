@@ -27,8 +27,7 @@
 			
 			 <p>
 				<label for="decricao" class="labelFormularioSetor" id="labelDescricao" >Descrição:</label>
-				<textarea rows="12" class="inputFormularioSetor" name="descricao">
-				</textarea>
+				<textarea rows="12" class="inputFormularioSetor" name="descricao"></textarea>
 			 </p>
 			 
 			 <p class="submit">

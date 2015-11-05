@@ -15,25 +15,35 @@ body{
 	position:absolute;
     left:50%;
     top:50%;
-	width: 300px;
+	width: 900px;
 	height: 200px;
-	margin-left:-150px;
-    margin-top:-100px;
+	margin-left:-450px;
+    margin-top:-200px;
 }
 
 #formLogin fieldset {
-	padding-top: 15px;
+	padding-top: 10px;
+	padding-left: 20px;
+	width: 300px;
+	height: 150px;
+	margin: auto;
 	border: solid 1px #000;
 	border-color: yellowgreen;
 	margin-top: 10px;
 }
 
+#formularioLogin{
+	margin: auto;
+}
+
 #loginBanner {
-	background-image: url("../img/logoLogin300x100.png");
+	background-image: url("../img/logoHorizontalExtenso.png");
 	background-color: transparent;
-	background-size: 100% 100%;
+	background-size: 100% 90%;
+	background-repeat: no-repeat;
+	margin: 0 auto;
 	height: 100px;
-	width: 300px;
+	width: 400px;
 }
 
 
@@ -151,7 +161,8 @@ input:focus {
 #header {
 	background-image: url("../img/bannerHeader.png");
 	background-color: white;
-	background-size: 100% 100%;
+	background-size: 90% 100%;
+	background-repeat: no-repeat;
 	height: 100px;
 	width: 100%;
 	border: solid 1px;
