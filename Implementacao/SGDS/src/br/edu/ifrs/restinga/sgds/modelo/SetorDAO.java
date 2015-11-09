@@ -16,7 +16,8 @@ public class SetorDAO {
 	private static final String sqlConsultarSetor = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE codSetor = ?;";
 	private static final String sqlConsultarSetoresAtivos = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE ativo = true;";
 	ResultSet retorno;
-	private static final String sqlDeletarSetor = "Drop SETOR where codSetor = ?";
+	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
+	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0 WHERE (codSetor = ?) ";
 	
 			
 	public void cadastrar(Setor setor) throws Exception {
@@ -51,8 +52,32 @@ public class SetorDAO {
 
 	}
 
-	public void deletarSetor() throws Exception {
-
+	public void deletarSetor(int cod) throws Exception {
+		Connection conexao = null;
+		//Setor deletarSetor = new Setor();
+		try{
+			conexao = SGDSConexao.getSGDSConexao();
+			comando = conexao.prepareStatement(sqlVerificarSetor);
+			comando.setInt(1, cod);
+			
+			retorno = comando.executeQuery();
+			retorno.next();
+			int cont = Integer.parseInt(retorno.getString("verificar"));
+			
+			if (cont == 0){
+				comando = conexao.prepareStatement(sqlDeletarSetor);
+				comando.setInt(1, cod);
+				comando.execute();
+				System.out.println("Excluido com sucesso!");
+			} else {
+				System.out.println("NÃ£o foi possivel excluir, verefique se não há dados relacionados!");
+			}			
+		} catch (SQLException e) {
+			System.out.println("NÃ£o foi possivel excluir!\n" + e.getMessage());
+		} finally {
+			if(comando != null) comando.close();
+			if(conexao != null) conexao.close();
+		}
 	}
 
 	public Setor consultarSetor(int codSetor) throws Exception {
