@@ -8,6 +8,12 @@
 <title>Main</title>
 </head>
 <body>
+	<%
+	String mensagem = (String) request.getAttribute("msg");
+	if (mensagem != null) {
+		out.print("<SCRIPT LANGUAGE=\"JavaScript\" TYPE=\"text/javascript\">alert (\""+mensagem+"\")</SCRIPT>");
+	}
+	%>
 	<div id="cabecalho">
 		<header>
 			<div id="header"></div>

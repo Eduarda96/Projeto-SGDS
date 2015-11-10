@@ -1,6 +1,5 @@
 package br.edu.ifrs.restinga.sgds.modelo;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +18,7 @@ public class SetorDAO {
 	ResultSet retorno;
 	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
 	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0 WHERE (codSetor = ?) ";
-	private static String msg = null;
+	String msg = null;
 
 	public void cadastrar(Setor setor) throws Exception {
 		Connection conexao = null;
@@ -60,7 +59,6 @@ public class SetorDAO {
 	public String deletarSetor(int cod) throws Exception {
 		Connection conexao = null;
 
-		// Setor deletarSetor = new Setor();
 		try {
 			conexao = SGDSConexao.getSGDSConexao();
 			comando = conexao.prepareStatement(sqlVerificarSetor);
@@ -76,7 +74,7 @@ public class SetorDAO {
 				comando.execute();
 				msg = "Excluido com sucesso!";
 			} else {
-				msg = "Não foi possivel excluir, verefique se n�o h� dados relacionados!";
+				msg = "Não foi possivel excluir, verefique se não há dados relacionados!";
 			}
 		} catch (SQLException e) {
 			msg = "Não foi possivel excluir!\n" + e.getMessage();

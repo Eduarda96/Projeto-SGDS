@@ -1,6 +1,5 @@
 <%@include file="cabecalho.jsp" %>
 <div id="main">
-	
 		<form id="formListaSetor" action="">
 			<textfield>		
 				<p>
