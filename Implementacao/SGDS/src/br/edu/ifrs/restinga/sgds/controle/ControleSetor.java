@@ -1,6 +1,7 @@
 package br.edu.ifrs.restinga.sgds.controle;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,9 @@ import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 @WebServlet("/ControleSetor")
 public class ControleSetor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static PrintWriter out = null;
+		
+	
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
@@ -165,9 +169,13 @@ public class ControleSetor extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("UTF-8");
+			String msg = null;
 			SetorDAO deletarDao = new SetorDAO();
 			int cod = Integer.parseInt(request.getParameter("codigo"));
-			deletarDao.deletarSetor(cod);
+			msg = deletarDao.deletarSetor(cod);
+			System.out.println(msg);
+			out.print("<SCRIPT LANGUAGE=\"JavaScript\"TYPE=\"text/javaScript\">"
+					+ "alert(\""+msg+"\")</SCRIPT>");
 			request.getRequestDispatcher("ControleSetor?acao=listar").forward(request,
 					response);
 		} catch (Exception e) {
