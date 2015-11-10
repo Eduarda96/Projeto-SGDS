@@ -192,12 +192,17 @@ public class ControleSetor extends HttpServlet {
 			Setor visualizar = visualizarDAO.consultarSetor(cod);
 			request.setAttribute("acao", "visualizar");
 			request.setAttribute("nome", visualizar.getNome());
-			request.setAttribute("nomeResponsavel", visualizar.getNome());
-			request.setAttribute("email", visualizar.getNome());
-			request.setAttribute("descricao", visualizar.getNome());
-			request.setAttribute("setores",  "<option value=\"" +visualizar.getSetorResponsavel().getCodSetor() + "\">"
-					+ visualizar.getSetorResponsavel().getNome() + "</option>");
-			request.getRequestDispatcher("cadastrarsetor.jsp").forward(request,response);
+			request.setAttribute("nomeResponsavel", visualizar.getNomeResponsavel());
+			request.setAttribute("email", visualizar.getEmail());
+			request.setAttribute("descricao", visualizar.getDescricao());
+			if (visualizar.getSetorResponsavel().getCodSetor() > 0) {
+				Setor visualizar2 = visualizarDAO.consultarSetor(visualizar.getSetorResponsavel().getCodSetor());
+				String option = "<option value=\"" +visualizar2.getCodSetor() + "\">"+ visualizar2.getNome() + "</option>";
+				request.setAttribute("ativos", option);
+			} else {
+				request.setAttribute("ativos",  "<option value=\"0\">Sem Respons�vel</option>");
+			}
+			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
