@@ -3,5 +3,5 @@
  */
 
 function mostrar(mensagem) {
-	alert(mensagem+"<br>");
+	alert(mensagem);
 }

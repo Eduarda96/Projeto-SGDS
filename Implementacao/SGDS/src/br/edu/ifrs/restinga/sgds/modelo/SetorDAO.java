@@ -17,7 +17,7 @@ public class SetorDAO {
 	private static final String sqlConsultarSetoresAtivos = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE ativo = true;";
 	ResultSet retorno;
 	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
-	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0 WHERE (codSetor = ?) ";
+	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
 	String msg = null;
 
 	public void cadastrar(Setor setor) throws Exception {

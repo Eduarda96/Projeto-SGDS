@@ -13,7 +13,7 @@
 	<%
 	String mensagem = (String) request.getAttribute("msg");
 	if (mensagem != null) {
-		%><script type="text/javascript">mostrar(<%= mensagem %>)</script><%
+		%><script type="text/javascript">mostrar('<%= mensagem %>')</script><%
 	}
 	%>
 	<div id="cabecalho">
