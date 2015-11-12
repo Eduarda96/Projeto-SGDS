@@ -1,3 +1,4 @@
+<%@page import="com.sun.xml.internal.txw2.Document"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,13 +6,14 @@
 <head>
 <meta charset="UTF-8" />
 <link rel="stylesheet" type="text/css" href="./css/estilo.css">
+<script type="text/javascript" src="js/config.js"></script>
 <title>Main</title>
 </head>
 <body>
 	<%
 	String mensagem = (String) request.getAttribute("msg");
 	if (mensagem != null) {
-		out.print("<SCRIPT LANGUAGE=\"JavaScript\" TYPE=\"text/javascript\">alert (\""+mensagem+"\")</SCRIPT>");
+		%><script type="text/javascript">mostrar(<%= mensagem %>)</script><%
 	}
 	%>
 	<div id="cabecalho">
