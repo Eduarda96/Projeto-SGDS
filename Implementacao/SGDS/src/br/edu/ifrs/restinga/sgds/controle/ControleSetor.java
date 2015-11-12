@@ -195,9 +195,9 @@ public class ControleSetor extends HttpServlet {
 			request.setAttribute("nomeResponsavel", visualizar.getNome());
 			request.setAttribute("email", visualizar.getNome());
 			request.setAttribute("descricao", visualizar.getNome());
-			request.setAttribute("setores",  "<option value=\"" +visualizar.getSetorResponsavel().getCodSetor() + "\">"
-					+ visualizar.getSetorResponsavel().getNome() + "</option>");
-			request.getRequestDispatcher("cadastrarsetor.jsp").forward(request,response);
+			/*request.setAttribute("setores",  "<option value=\"" +visualizar.getSetorResponsavel().getCodSetor() + "\">"
+					+ visualizar.getSetorResponsavel().getNome() + "</option>");*/
+			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
