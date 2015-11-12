@@ -102,9 +102,13 @@ public class SetorDAO {
 					.getString("nomeResponsavel"));
 			retornarSetor.setEmail(retorno.getString("email"));
 			retornarSetor.setDescricao(retorno.getString("descricao"));
+			Setor resp = new Setor();
+			resp.setCodSetor(0);
+			if (retorno.getInt("setorResponsavel") > 0)
+				resp.setCodSetor(retorno.getInt("setorResponsavel"));
+			retornarSetor.setSetorResponsavel(resp);
 		} catch (SQLException e) {
-			System.out
-					.println("Não foi possivel conectar!\n" + e.getMessage());
+			System.out.println("Não foi possivel conectar!\n" + e.getMessage());
 		} finally {
 			if (comando != null)
 				comando.close();
