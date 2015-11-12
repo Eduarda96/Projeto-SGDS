@@ -20,7 +20,7 @@ public class SetorDAO {
 	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
 	String msg = null;
 
-	public void cadastrar(Setor setor) throws Exception {
+	public String cadastrar(Setor setor) throws Exception {
 		Connection conexao = null;
 		int subordinado;
 		if (setor.getSetorResponsavel() == null) {
@@ -40,16 +40,16 @@ public class SetorDAO {
 			comando.setInt(6, subordinado);
 
 			comando.execute();
-			// System.out.println("Setor cadastrado com sucesso");
+			msg = "Setor cadastrado com sucesso";
 		} catch (SQLException e) {
-			System.out.println("Não foi possivel cadastrar!\n"
-					+ e.getMessage());
+			msg = "Não foi possivel cadastrar!\n" + e.getMessage();
 		} finally {
 			if (comando != null)
 				comando.close();
 			if (conexao != null)
 				conexao.close();
 		}
+		return msg;
 	}
 
 	public void alterarSetor() throws Exception {

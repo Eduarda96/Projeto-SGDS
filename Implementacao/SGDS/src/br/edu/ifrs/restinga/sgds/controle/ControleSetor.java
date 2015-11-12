@@ -18,6 +18,7 @@ import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 @WebServlet("/ControleSetor")
 public class ControleSetor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String msg = null;
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
@@ -66,6 +67,7 @@ public class ControleSetor extends HttpServlet {
 						+ enviar.getNome() + "</option>";
 			}
 
+			request.setAttribute("acao", "selecao");
 			request.setAttribute("ativos", select);
 			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,
 					response);
@@ -152,7 +154,8 @@ public class ControleSetor extends HttpServlet {
 			SetorDAO cadastrarDAO = new SetorDAO();
 
 			if (!erro) {
-				cadastrarDAO.cadastrar(cadastrar);
+				msg = cadastrarDAO.cadastrar(cadastrar);
+				request.setAttribute("msg", msg);
 			} else {
 				request.setAttribute("erro", mens_erro);
 				request.getRequestDispatcher("erro.jsp").forward(request,
@@ -170,7 +173,6 @@ public class ControleSetor extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String msg = null;
 			SetorDAO deletarDao = new SetorDAO();
 			int cod = Integer.parseInt(request.getParameter("codigo"));
 			msg = deletarDao.deletarSetor(cod);
@@ -196,9 +198,6 @@ public class ControleSetor extends HttpServlet {
 			request.setAttribute("nomeResponsavel", visualizar.getNome());
 			request.setAttribute("email", visualizar.getNome());
 			request.setAttribute("descricao", visualizar.getNome());
-			/*request.setAttribute("setores",  "<option value=\"" +visualizar.getSetorResponsavel().getCodSetor() + "\">"
-					+ visualizar.getSetorResponsavel().getNome() + "</option>");*/
-
 			request.setAttribute("nomeResponsavel", visualizar.getNomeResponsavel());
 			request.setAttribute("email", visualizar.getEmail());
 			request.setAttribute("descricao", visualizar.getDescricao());

@@ -33,6 +33,10 @@
 			 <p class="submit">
 			 	<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 	<input type="submit" onclick="enviar(); " <% if (request.getAttribute("acao") == "visualizar") {%> value="Voltar" <% } else { %>value="Enviar" <% } %>>
+			 	<% if (request.getAttribute("acao") == "selecao") {%>
+			 		<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
+			 		<input type="reset" value="Limpar">
+			 	<% } %>
 			 </p>
 	
 		</form>
