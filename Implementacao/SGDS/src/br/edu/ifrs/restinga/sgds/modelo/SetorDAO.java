@@ -72,9 +72,9 @@ public class SetorDAO {
 				comando = conexao.prepareStatement(sqlDeletarSetor);
 				comando.setInt(1, cod);
 				comando.execute();
-				msg = "Excluido com sucesso!";
+				msg = "Setor excluído com sucesso";
 			} else {
-				msg = "NÃ£o foi possivel excluir, verefique se nÃ£o hÃ¡ dados relacionados!";
+				msg = "Setor não pode ser excluído, existem servidores associados";
 			}
 		} catch (SQLException e) {
 			msg = "NÃ£o foi possivel excluir!\n" + e.getMessage();

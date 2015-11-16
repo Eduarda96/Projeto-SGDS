@@ -32,8 +32,14 @@
 			 
 			 <p class="submit">
 			 	<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 	<input type="submit" onclick="enviar(); " <% if (request.getAttribute("acao") == "visualizar") {%> value="Voltar" <% } else { %>value="Enviar" <% } %>>
-			 	<% if (request.getAttribute("acao") == "selecao") {%>
+			 	<% if (request.getAttribute("acao") == "visualizar") { %> 
+			 	<input type="submit" onclick="enviar(); " value="Voltar"> 
+			 	<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
+			 	<input type="submit" onclick="enviar(); " value="Alterar">
+			 	<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
+			 	<input type="submit" onclick="<%request.setAttribute("acao","deletar"); %>" value="Excluir">
+			 	<% } else { %> <input type="submit" onclick="enviar(); "value="Enviar"> <% } %>
+			  	<% if (request.getAttribute("acao") == "selecao") {%>
 			 		<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 		<input type="reset" value="Limpar">
 			 	<% } %>

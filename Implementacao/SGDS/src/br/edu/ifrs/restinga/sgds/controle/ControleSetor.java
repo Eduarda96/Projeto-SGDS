@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import br.edu.ifrs.restinga.sgds.modelo.Setor;
 import br.edu.ifrs.restinga.sgds.modelo.SetorDAO;
 
@@ -59,7 +60,7 @@ public class ControleSetor extends HttpServlet {
 
 			List<Setor> selecao = new ArrayList<Setor>();
 			SetorDAO selecaoDao = new SetorDAO();
-			String select = "<option value=\"0\">Sem Respons�vel</option>";
+			String select = "<option value=\"0\">Sem Responsavel</option>";
 
 			selecao.addAll(selecaoDao.selecaoSetorResponsavel());
 			for (Setor enviar : selecao) {
