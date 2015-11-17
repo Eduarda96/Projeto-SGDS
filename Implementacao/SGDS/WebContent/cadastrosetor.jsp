@@ -1,8 +1,13 @@
 <%@include file="cabecalho.jsp" %>
+<%
+	String acao = (String) request.getAttribute("acao");
+	int cod = Integer.parseInt(""+request.getAttribute("codigo"));
+%>
 <div id="main">
 	<div id="divForm">
 		<form name="formcadrhsetor" id="formCadastroSetor" action="ControleSetor" method="post"> 
-			<input type="hidden" id="acao" name="acao" <% if (request.getAttribute("acao") == "visualizar") {%> value="listar" <% } else { %>value="cadastrar" <% } %>>
+			<input type="hidden" id="acao" name="acao" value="<%= acao %>">
+			<input type="hidden" id="codigo" name="codigo" value="<%= cod %>"> 
 			<p>
 				<label for="nome" class="labelFormularioSetor">Nome:</label>
 				<input type="text" id="nome" class="inputFormularioSetor" required="required" name="nome" <% if (request.getAttribute("nome") != null) { %> value="<%= request.getAttribute("nome") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> disabled="disabled" <% } %>>
@@ -20,26 +25,27 @@
 			 		 
 			 <p>		 
 			 	<label for= "setores" class="labelFormularioSetor">Setores:</label>
-			 	<select name="setores" class="inputFormularioSetor" <% if (request.getAttribute("acao") == "visualizar") {%> disabled="disabled" <% } %>>
+			 	<select name="setores" class="inputFormularioSetor" <% if (acao == "visualizar") {%> disabled="disabled" <% } %>>
 				 	<%= request.getAttribute("ativos") %>
 			 	</select>
 			 </p>
 			
 			 <p>
 				<label for="decricao" class="labelFormularioSetor" id="labelDescricao" >Descrição:</label>
-				<textarea rows="12" class="inputFormularioSetor" name="descricao" <% if (request.getAttribute("acao") == "visualizar") {%> disabled="disabled" <% } %>> <% if (request.getAttribute("descricao") != null) { out.print(request.getAttribute("descricao")); } %></textarea>
+				<textarea rows="12" class="inputFormularioSetor" name="descricao" <% if (acao == "visualizar") {%> disabled="disabled" <% } %>> <% if (request.getAttribute("descricao") != null) { out.print(request.getAttribute("descricao")); } %></textarea>
 			 </p>
 			 
 			 <p class="submit">
-			 	<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 	<% if (request.getAttribute("acao") == "visualizar") { %> 
-			 	<input type="submit" onclick="enviar(); " value="Voltar"> 
-			 	<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 	<input type="submit" onclick="enviar(); " value="Alterar">
-			 	<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 	<input type="submit" onclick="<%request.setAttribute("acao","deletar"); %>" value="Excluir">
+			 	<label for="submit" class="labelFormularioSetor" id="labelDescricao" ></label>
+			 	<% if (acao == "visualizar") { %> 
+			 	<input type="button" onclick="visuvoltar(); " value="Voltar"> 
+			 	<label for="alterar" class="labelFormularioSetor" id="labelDescricao" ></label>
+			 	<%-- <input type="button" onclick="visualterar(<%= cod %>); " value="Alterar"> --%>
+			 	<input type="button" onclick="visualterar('formcadrhsetor'); " value="Alterar">
+			 	<label for="excluir" class="labelFormularioSetor" id="labelDescricao" ></label>
+			 	<input type="button" onclick="visudeletar(<%= cod %>);" value="Excluir">
 			 	<% } else { %> <input type="submit" onclick="enviar(); "value="Enviar"> <% } %>
-			  	<% if (request.getAttribute("acao") == "selecao") {%>
+			  	<% if (acao == "selecao") {%>
 			 		<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 		<input type="reset" value="Limpar">
 			 	<% } %>

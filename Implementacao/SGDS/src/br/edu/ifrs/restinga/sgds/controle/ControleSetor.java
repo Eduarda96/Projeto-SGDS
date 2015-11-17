@@ -95,7 +95,9 @@ public class ControleSetor extends HttpServlet {
 						+ enviar.getNomeResponsavel() + "<td>"
 						+ enviar.getEmail();
 				print += "<td><div class=\"divColunaEditar\"><ul>"
-						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
+						+ "<li><a href=\"ControleSetor?acao=alterar&codigo="
+						+ enviar.getCodSetor()
+						+ "\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
 						+ "<li><a href=\"ControleSetor?acao=visualizar&codigo="
 						+ enviar.getCodSetor()
 						+ "\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
@@ -194,6 +196,7 @@ public class ControleSetor extends HttpServlet {
 			int cod = Integer.parseInt(request.getParameter("codigo"));
 			Setor visualizar = visualizarDAO.consultarSetor(cod);
 			request.setAttribute("acao", "visualizar");
+			request.setAttribute("codigo", cod);
 			request.setAttribute("nome", visualizar.getNome());
 
 			request.setAttribute("nomeResponsavel", visualizar.getNome());
