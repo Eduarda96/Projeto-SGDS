@@ -34,7 +34,7 @@
 			
 			 <p>
 				<label for="decricao" class="labelFormularioSetor" id="labelDescricao" >Descrição:</label>
-				<textarea rows="12" class="inputFormularioSetor" name="descricao" <% if (acao == "visualizar") {%> disabled="disabled" <% } %>> <% if (request.getAttribute("descricao") != null) { out.print(request.getAttribute("descricao")); } %></textarea>
+				<textarea rows="12" class="inputFormularioSetor" name="descricao" <% if (acao == "visualizar") {%> disabled="disabled" <% } %>><% if (request.getAttribute("descricao") != null) { out.print(request.getAttribute("descricao")); } %></textarea>
 			 </p>
 			 
 			 <p class="submit">
