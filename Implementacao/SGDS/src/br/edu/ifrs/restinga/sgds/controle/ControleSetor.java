@@ -47,6 +47,12 @@ public class ControleSetor extends HttpServlet {
 		case "visualizar":
 			visualizarSetor(request, response);
 			break;
+		case "alterar":
+			alterarSetor(request, response);
+			break;
+		case "consultarAlteracao":
+			consultarAlteracaoSetor(request, response);
+			break;
 
 		default:
 			break;
@@ -95,7 +101,7 @@ public class ControleSetor extends HttpServlet {
 						+ enviar.getNomeResponsavel() + "<td>"
 						+ enviar.getEmail();
 				print += "<td><div class=\"divColunaEditar\"><ul>"
-						+ "<li><a href=\"ControleSetor?acao=alterar&codigo="
+						+ "<li><a href=\"ControleSetor?acao=consultarAlteracao&codigo="
 						+ enviar.getCodSetor()
 						+ "\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
 						+ "<li><a href=\"ControleSetor?acao=visualizar&codigo="
@@ -198,10 +204,6 @@ public class ControleSetor extends HttpServlet {
 			request.setAttribute("acao", "visualizar");
 			request.setAttribute("codigo", cod);
 			request.setAttribute("nome", visualizar.getNome());
-
-			request.setAttribute("nomeResponsavel", visualizar.getNome());
-			request.setAttribute("email", visualizar.getNome());
-			request.setAttribute("descricao", visualizar.getNome());
 			request.setAttribute("nomeResponsavel", visualizar.getNomeResponsavel());
 			request.setAttribute("email", visualizar.getEmail());
 			request.setAttribute("descricao", visualizar.getDescricao());
@@ -219,6 +221,87 @@ public class ControleSetor extends HttpServlet {
 		}
 	}
 	
+	protected void alterarSetor(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			request.setCharacterEncoding("UTF-8");
+			String mens_erro = "";
+			boolean erro = false;
+			Setor alterar = new Setor();
+			alterar.setCodSetor(Integer.parseInt("" + request.getParameter("codigo")));
+			alterar.setNome(request.getParameter("nome"));
+			alterar.setNomeResponsavel(request
+					.getParameter("nomeResponsavel"));
+			alterar.setEmail(request.getParameter("email"));
+			if (Integer.parseInt("" + request.getParameter("setores")) > 0) {
+				alterar.setSetorResponsavel(new SetorDAO()
+						.consultarSetor(Integer.parseInt(""
+								+ request.getParameter("setores"))));
+			} else {
+				alterar.setSetorResponsavel(null);
+			}
+			alterar.setDescricao(request.getParameter("descricao"));
+
+			if (!alterar.validarNomeSetor()) {
+				mens_erro += "Erro: Nome do setor invalido!<br>";
+				erro = true;
+			}
+			if (!alterar.validaEmail()) {
+				mens_erro += "Erro: Email do setor invalido!<br>";
+				erro = true;
+			}
+
+			SetorDAO alterarDAO = new SetorDAO();
+
+			if (!erro) {
+				msg = alterarDAO.alterarSetor(alterar);
+				request.setAttribute("msg", msg);
+			} else {
+				request.setAttribute("erro", mens_erro);
+				request.getRequestDispatcher("erro.jsp").forward(request,
+						response);
+			}
+
+			request.getRequestDispatcher("ControleSetor?acao=listar").forward(request, response);
+		} catch (Exception e) {
+			request.setAttribute("erro", e.getMessage());
+			request.getRequestDispatcher("erro.jsp").forward(request, response);
+		}
+	}
+	
+	protected void consultarAlteracaoSetor(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			SetorDAO consultarAlteracaoDAO = new SetorDAO();
+			int cod = Integer.parseInt(request.getParameter("codigo"));
+			Setor consultarAlteracao = consultarAlteracaoDAO.consultarSetor(cod);
+			request.setAttribute("acao", "alterar");
+			request.setAttribute("codigo", cod);
+			request.setAttribute("nome", consultarAlteracao.getNome());
+			request.setAttribute("nomeResponsavel", consultarAlteracao.getNomeResponsavel());
+			request.setAttribute("email", consultarAlteracao.getEmail());
+			request.setAttribute("descricao", consultarAlteracao.getDescricao());
+			
+			List<Setor> selecao = new ArrayList<Setor>();
+			SetorDAO selecaoDao = new SetorDAO();
+			String select = "<option value=\"0\">Sem Responsavel</option>";
+
+			selecao.addAll(selecaoDao.selecaoSetorResponsavel());
+			for (Setor enviar : selecao) {
+				select += "<option value=\"" + enviar.getCodSetor() + "\">"
+						+ enviar.getNome() + "</option>";
+			}
+
+			request.setAttribute("ativos", select);
+			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,
+					response);
+		} catch (Exception e) {
+			request.setAttribute("erro", e.getMessage());
+			request.getRequestDispatcher("erro.jsp").forward(request, response);
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse

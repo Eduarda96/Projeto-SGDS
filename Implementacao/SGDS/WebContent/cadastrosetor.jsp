@@ -10,6 +10,7 @@
 		<form name="formcadrhsetor" id="formCadastroSetor" action="ControleSetor" method="post"> 
 			<input type="hidden" id="acao" name="acao" value="<%= acao %>">
 			<input type="hidden" id="codigo" name="codigo" value="<%= cod %>"> 
+			<script>alert(<%= request.getAttribute("acao")%>);</script>
 			<p>
 				<label for="nome" class="labelFormularioSetor">Nome:</label>
 				<input type="text" id="nome" class="inputFormularioSetor" required="required" name="nome" <% if (request.getAttribute("nome") != null) { %> value="<%= request.getAttribute("nome") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> disabled="disabled" <% } %>>
@@ -42,8 +43,7 @@
 			 	<% if (acao == "visualizar") { %> 
 			 	<input type="button" onclick="visuvoltar(); " value="Voltar"> 
 			 	<label for="alterar" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 	<%-- <input type="button" onclick="visualterar(<%= cod %>); " value="Alterar"> --%>
-			 	<input type="button" onclick="visualterar('formcadrhsetor'); " value="Alterar">
+			 	<input type="button" onclick="visualterar(<%= cod %>); " value="Alterar">
 			 	<label for="excluir" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 	<input type="button" onclick="visudeletar(<%= cod %>);" value="Excluir">
 			 	<% } else { %> <input type="submit" onclick="enviar(); "value="Enviar"> <% } %>

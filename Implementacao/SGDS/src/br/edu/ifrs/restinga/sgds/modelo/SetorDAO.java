@@ -18,6 +18,7 @@ public class SetorDAO {
 	ResultSet retorno;
 	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
 	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
+	private static final String sqlAlterarSetor = "UPDATE SETOR nome = ?, nomeResponsavel = ?, setorResponsavel = ?, descricao = ?, email = ? WHERE (codSetor = ?) ";
 	String msg = null;
 
 	public String cadastrar(Setor setor) throws Exception {
@@ -52,7 +53,37 @@ public class SetorDAO {
 		return msg;
 	}
 
-	public void alterarSetor() throws Exception {
+	public String alterarSetor(Setor setor) throws Exception {
+		Connection conexao = null;
+		
+		int subordinado;
+		if (setor.getSetorResponsavel() == null) {
+			subordinado = 0;
+		} else {
+			subordinado = consultarSetor(
+					setor.getSetorResponsavel().getCodSetor()).getCodSetor();
+		}
+		try {
+			conexao = SGDSConexao.getSGDSConexao();
+			comando = conexao.prepareStatement(sqlAlterarSetor);
+			comando.setString(1, setor.getNome());
+			comando.setString(2, setor.getNomeResponsavel());
+			comando.setString(4, setor.getDescricao());
+			comando.setString(5, setor.getEmail());
+			comando.setInt(6, setor.getCodSetor());
+			comando.setInt(3, subordinado);
+
+			comando.execute();
+			msg = "Setor atualizado com sucesso.";
+		} catch (SQLException e) {
+			msg = "Não foi possivel atualizar o setor.\n" + e.getMessage();
+		} finally {
+			if (comando != null)
+				comando.close();
+			if (conexao != null)
+				conexao.close();
+		}
+		return msg;
 
 	}
 
