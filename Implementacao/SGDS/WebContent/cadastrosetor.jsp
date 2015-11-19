@@ -1,7 +1,9 @@
 <%@include file="cabecalho.jsp" %>
 <%
+	int cod = 0;	
 	String acao = (String) request.getAttribute("acao");
-	int cod = Integer.parseInt(""+request.getAttribute("codigo"));
+	if (request.getAttribute("codigo") != null)
+		cod = Integer.parseInt(""+request.getAttribute("codigo"));
 %>
 <div id="main">
 	<div id="divForm">

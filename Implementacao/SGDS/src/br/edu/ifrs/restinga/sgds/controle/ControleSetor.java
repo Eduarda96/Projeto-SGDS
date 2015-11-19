@@ -68,7 +68,7 @@ public class ControleSetor extends HttpServlet {
 						+ enviar.getNome() + "</option>";
 			}
 
-			request.setAttribute("acao", "selecao");
+			request.setAttribute("acao", "cadastrar");
 			request.setAttribute("ativos", select);
 			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,
 					response);
