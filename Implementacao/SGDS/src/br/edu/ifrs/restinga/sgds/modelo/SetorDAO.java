@@ -18,6 +18,8 @@ public class SetorDAO {
 	ResultSet retorno;
 	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
 	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
+	private static final String sqlVerificarNomeSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE nome = ?";
+
 	String msg = null;
 
 	public String cadastrar(Setor setor) throws Exception {
@@ -108,7 +110,8 @@ public class SetorDAO {
 				resp.setCodSetor(retorno.getInt("setorResponsavel"));
 			retornarSetor.setSetorResponsavel(resp);
 		} catch (SQLException e) {
-			System.out.println("Não foi possivel conectar!\n" + e.getMessage());
+			System.out
+					.println("Não foi possivel conectar!\n" + e.getMessage());
 		} finally {
 			if (comando != null)
 				comando.close();
@@ -177,6 +180,28 @@ public class SetorDAO {
 		}
 		return ativos;
 	}
-}
-	
 
+	public int VerificarNomeSetor(String nome) throws Exception {
+		Connection conexao = null;
+		int cont = 0;
+		try {
+			conexao = SGDSConexao.getSGDSConexao();
+			comando = conexao.prepareStatement(sqlVerificarNomeSetor);
+			comando.setString(1, nome);
+
+			retorno = comando.executeQuery();
+			retorno.next();
+			cont = Integer.parseInt(retorno.getString("verificar"));
+
+		} catch (SQLException e) {
+			msg = "N�o foi possivel verificar!\n" + e.getMessage();
+		} finally {
+			if (comando != null)
+				comando.close();
+			if (conexao != null)
+				conexao.close();
+		}
+		return cont;
+	}
+
+}

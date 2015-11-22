@@ -123,18 +123,11 @@ public class ControleSetor extends HttpServlet {
 			String mens_erro = "";
 			boolean erro = false;
 			Setor cadastrar = new Setor();
-			// System.out.println("nome: "+request.getParameter("nome"));
 			cadastrar.setNome(request.getParameter("nome"));
-
-			// System.out.println(request.getParameter("nomeResponsavel"));
 			cadastrar.setNomeResponsavel(request
 					.getParameter("nomeResponsavel"));
-
-			// System.out.println(request.getParameter("email"));
 			cadastrar.setEmail(request.getParameter("email"));
-			// System.out.println(cadastrar.getEmail().length());
 
-			// System.out.println("setor"+request.getParameter("setores"));
 			if (Integer.parseInt("" + request.getParameter("setores")) > 0) {
 				cadastrar.setSetorResponsavel(new SetorDAO()
 						.consultarSetor(Integer.parseInt(""
@@ -142,7 +135,7 @@ public class ControleSetor extends HttpServlet {
 			} else {
 				cadastrar.setSetorResponsavel(null);
 			}
-			// System.out.println(request.getParameter("descricao"));
+
 			cadastrar.setDescricao(request.getParameter("descricao"));
 
 			if (!cadastrar.validarNomeSetor()) {
@@ -157,8 +150,14 @@ public class ControleSetor extends HttpServlet {
 			SetorDAO cadastrarDAO = new SetorDAO();
 
 			if (!erro) {
-				msg = cadastrarDAO.cadastrar(cadastrar);
-				request.setAttribute("msg", msg);
+				int test = cadastrarDAO.VerificarNomeSetor(cadastrar.getNome());
+			
+				//if (cadastrarDAO.VerificarNomeSetor(cadastrar.getNome())!= "0") {
+					request.setAttribute("msg", "Nome do setor já cadastrado."+test);
+				//} else {
+					msg = cadastrarDAO.cadastrar(cadastrar);
+					request.setAttribute("msg", msg+test);
+				//}
 			} else {
 				request.setAttribute("erro", mens_erro);
 				request.getRequestDispatcher("erro.jsp").forward(request,
@@ -202,23 +201,27 @@ public class ControleSetor extends HttpServlet {
 			request.setAttribute("nomeResponsavel", visualizar.getNome());
 			request.setAttribute("email", visualizar.getNome());
 			request.setAttribute("descricao", visualizar.getNome());
-			request.setAttribute("nomeResponsavel", visualizar.getNomeResponsavel());
+			request.setAttribute("nomeResponsavel",
+					visualizar.getNomeResponsavel());
 			request.setAttribute("email", visualizar.getEmail());
 			request.setAttribute("descricao", visualizar.getDescricao());
 			if (visualizar.getSetorResponsavel().getCodSetor() > 0) {
-				Setor visualizar2 = visualizarDAO.consultarSetor(visualizar.getSetorResponsavel().getCodSetor());
-				String option = "<option value=\"" +visualizar2.getCodSetor() + "\">"+ visualizar2.getNome() + "</option>";
+				Setor visualizar2 = visualizarDAO.consultarSetor(visualizar
+						.getSetorResponsavel().getCodSetor());
+				String option = "<option value=\"" + visualizar2.getCodSetor()
+						+ "\">" + visualizar2.getNome() + "</option>";
 				request.setAttribute("ativos", option);
 			} else {
-				request.setAttribute("ativos",  "<option value=\"0\">Sem Responsavel</option>");
+				request.setAttribute("ativos",
+						"<option value=\"0\">Sem Responsavel</option>");
 			}
-			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,response);
+			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,
+					response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
 		}
 	}
-	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
