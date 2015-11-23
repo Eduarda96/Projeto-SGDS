@@ -154,12 +154,12 @@ public class ControleSetor extends HttpServlet {
 			if (!erro) {
 				int test = cadastrarDAO.VerificarNomeSetor(cadastrar.getNome());
 			
-				//if (cadastrarDAO.VerificarNomeSetor(cadastrar.getNome())!= "0") {
-					request.setAttribute("msg", "Nome do setor j� cadastrado."+test);
-				//} else {
+				if (test != 0) {
+					request.setAttribute("msg", "Nome do setor j� cadastrado.");
+				} else {
 					msg = cadastrarDAO.cadastrar(cadastrar);
 					request.setAttribute("msg", msg+test);
-				//}
+				}
 			} else {
 				request.setAttribute("erro", mens_erro);
 				request.getRequestDispatcher("erro.jsp").forward(request,
