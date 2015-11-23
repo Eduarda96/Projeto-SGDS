@@ -99,7 +99,7 @@ public class ControleSetor extends HttpServlet {
 			for (Setor enviar : listar) {
 				print += "<tr><td>" + enviar.getNome() + "<td>" + enviar.getSetorResponsavel().getNome() + "<td>"
 						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail();
-				print += "<td><div class=\"divColunaEditar\"><ul>" + "<li><a href=\"ControleSetor?acao=alterar&codigo="
+				print += "<td><div class=\"divColunaEditar\"><ul>" + "<li><a href=\"ControleSetor?acao=consultarAlteracao&codigo="
 						+ enviar.getCodSetor()
 						+ "\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
 						+ "<li><a href=\"ControleSetor?acao=visualizar&codigo=" + enviar.getCodSetor()
