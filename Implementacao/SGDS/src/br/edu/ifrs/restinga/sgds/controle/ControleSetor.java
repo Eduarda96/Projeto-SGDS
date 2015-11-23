@@ -124,13 +124,16 @@ public class ControleSetor extends HttpServlet {
 			String mens_erro = "";
 			boolean erro = false;
 			Setor cadastrar = new Setor();
+			
 			cadastrar.setNome(request.getParameter("nome"));
-			cadastrar.setNomeResponsavel(request.getParameter("nomeResponsavel"));
+			cadastrar.setNomeResponsavel(request
+					.getParameter("nomeResponsavel"));
 			cadastrar.setEmail(request.getParameter("email"));
 
 			if (Integer.parseInt("" + request.getParameter("setores")) > 0) {
-				cadastrar.setSetorResponsavel(
-						new SetorDAO().consultarSetor(Integer.parseInt("" + request.getParameter("setores"))));
+				cadastrar.setSetorResponsavel(new SetorDAO()
+						.consultarSetor(Integer.parseInt(""
+								+ request.getParameter("setores"))));
 			} else {
 				cadastrar.setSetorResponsavel(null);
 			}
@@ -149,11 +152,18 @@ public class ControleSetor extends HttpServlet {
 			SetorDAO cadastrarDAO = new SetorDAO();
 
 			if (!erro) {
-				msg = cadastrarDAO.cadastrar(cadastrar);
-				request.setAttribute("msg", msg);
+				int test = cadastrarDAO.VerificarNomeSetor(cadastrar.getNome());
+			
+				//if (cadastrarDAO.VerificarNomeSetor(cadastrar.getNome())!= "0") {
+					request.setAttribute("msg", "Nome do setor j� cadastrado."+test);
+				//} else {
+					msg = cadastrarDAO.cadastrar(cadastrar);
+					request.setAttribute("msg", msg+test);
+				//}
 			} else {
 				request.setAttribute("erro", mens_erro);
-				request.getRequestDispatcher("erro.jsp").forward(request, response);
+				request.getRequestDispatcher("erro.jsp").forward(request,
+						response);
 			}
 
 			request.getRequestDispatcher("main.jsp").forward(request, response);
@@ -163,23 +173,24 @@ public class ControleSetor extends HttpServlet {
 		}
 	}
 
-	protected void deletarSetor(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void deletarSetor(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			SetorDAO deletarDao = new SetorDAO();
 			int cod = Integer.parseInt(request.getParameter("codigo"));
 			msg = deletarDao.deletarSetor(cod);
 			request.setAttribute("msg", msg);
-			request.getRequestDispatcher("ControleSetor?acao=listar").forward(request, response);
+			request.getRequestDispatcher("ControleSetor?acao=listar").forward(
+					request, response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
 		}
 	}
 
-	protected void visualizarSetor(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void visualizarSetor(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			SetorDAO visualizarDAO = new SetorDAO();
@@ -188,26 +199,34 @@ public class ControleSetor extends HttpServlet {
 			request.setAttribute("acao", "visualizar");
 			request.setAttribute("codigo", cod);
 			request.setAttribute("nome", visualizar.getNome());
-			request.setAttribute("nomeResponsavel", visualizar.getNomeResponsavel());
+
+			request.setAttribute("nomeResponsavel", visualizar.getNome());
+			request.setAttribute("email", visualizar.getNome());
+			request.setAttribute("descricao", visualizar.getNome());
+			request.setAttribute("nomeResponsavel",
+					visualizar.getNomeResponsavel());
 			request.setAttribute("email", visualizar.getEmail());
 			request.setAttribute("descricao", visualizar.getDescricao());
 			if (visualizar.getSetorResponsavel().getCodSetor() > 0) {
-				Setor visualizar2 = visualizarDAO.consultarSetor(visualizar.getSetorResponsavel().getCodSetor());
-				String option = "<option value=\"" + visualizar2.getCodSetor() + "\">" + visualizar2.getNome()
-						+ "</option>";
+				Setor visualizar2 = visualizarDAO.consultarSetor(visualizar
+						.getSetorResponsavel().getCodSetor());
+				String option = "<option value=\"" + visualizar2.getCodSetor()
+						+ "\">" + visualizar2.getNome() + "</option>";
 				request.setAttribute("ativos", option);
 			} else {
-				request.setAttribute("ativos", "<option value=\"0\">Sem Responsavel</option>");
+				request.setAttribute("ativos",
+						"<option value=\"0\">Sem Responsavel</option>");
 			}
-			request.getRequestDispatcher("cadastrosetor.jsp").forward(request, response);
+			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,
+					response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
 		}
 	}
 
-	protected void alterarSetor(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void alterarSetor(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -216,11 +235,13 @@ public class ControleSetor extends HttpServlet {
 			Setor alterar = new Setor();
 			alterar.setCodSetor(Integer.parseInt("" + request.getParameter("codigo")));
 			alterar.setNome(request.getParameter("nome"));
-			alterar.setNomeResponsavel(request.getParameter("nomeResponsavel"));
+			alterar.setNomeResponsavel(request
+					.getParameter("nomeResponsavel"));
 			alterar.setEmail(request.getParameter("email"));
 			if (Integer.parseInt("" + request.getParameter("setores")) > 0) {
-				alterar.setSetorResponsavel(
-						new SetorDAO().consultarSetor(Integer.parseInt("" + request.getParameter("setores"))));
+				alterar.setSetorResponsavel(new SetorDAO()
+						.consultarSetor(Integer.parseInt(""
+								+ request.getParameter("setores"))));
 			} else {
 				alterar.setSetorResponsavel(null);
 			}
@@ -242,7 +263,8 @@ public class ControleSetor extends HttpServlet {
 				request.setAttribute("msg", msg);
 			} else {
 				request.setAttribute("erro", mens_erro);
-				request.getRequestDispatcher("erro.jsp").forward(request, response);
+				request.getRequestDispatcher("erro.jsp").forward(request,
+						response);
 			}
 
 			request.getRequestDispatcher("ControleSetor?acao=listar").forward(request, response);
@@ -251,9 +273,9 @@ public class ControleSetor extends HttpServlet {
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
 		}
 	}
-
-	protected void consultarAlteracaoSetor(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	
+	protected void consultarAlteracaoSetor(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			SetorDAO consultarAlteracaoDAO = new SetorDAO();
@@ -265,21 +287,45 @@ public class ControleSetor extends HttpServlet {
 			request.setAttribute("nomeResponsavel", consultarAlteracao.getNomeResponsavel());
 			request.setAttribute("email", consultarAlteracao.getEmail());
 			request.setAttribute("descricao", consultarAlteracao.getDescricao());
-
+			
 			List<Setor> selecao = new ArrayList<Setor>();
 			SetorDAO selecaoDao = new SetorDAO();
 			String select = "<option value=\"0\">Sem Responsavel</option>";
 
 			selecao.addAll(selecaoDao.selecaoSetorResponsavel());
 			for (Setor enviar : selecao) {
-				select += "<option value=\"" + enviar.getCodSetor() + "\">" + enviar.getNome() + "</option>";
+				select += "<option value=\"" + enviar.getCodSetor() + "\">"
+						+ enviar.getNome() + "</option>";
 			}
+
 			request.setAttribute("ativos", select);
-			request.getRequestDispatcher("cadastrosetor.jsp").forward(request, response);
+			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,
+					response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
 		}
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ")
+				.append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 	protected void listarSetores(HttpServletRequest request, HttpServletResponse response)
@@ -302,7 +348,7 @@ public class ControleSetor extends HttpServlet {
 						"<td>" + enviar.getEmail();
 				print += "<td><div class=\"divColunaEditar\"><ul>"
 						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
-						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
+						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informa��es do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
 						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
 			}
 			 request.setAttribute("lista", print);
@@ -312,26 +358,6 @@ public class ControleSetor extends HttpServlet {
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
 		}
 
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
