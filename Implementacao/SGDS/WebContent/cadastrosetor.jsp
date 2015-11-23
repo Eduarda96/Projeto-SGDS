@@ -46,7 +46,7 @@
 			 	<input type="button" onclick="visualterar(<%= cod %>); " value="Alterar">
 			 	<label for="excluir" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 	<input type="button" onclick="visudeletar(<%= cod %>);" value="Excluir">
-			 	<% } else { %> <input type="submit" onclick="enviar(); "value="Enviar"> <% } %>
+			 	<% } else { %> <input type="submit" onclick="return valid('formcadrhsetor'); " value="Enviar"> <% } %>
 			  	<% if (acao == "selecao") {%>
 			 		<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 		<input type="reset" value="Limpar">
