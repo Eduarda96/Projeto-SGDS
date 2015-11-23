@@ -19,6 +19,7 @@ public class SetorDAO {
 	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
 	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
 	private static final String sqlAlterarSetor = "UPDATE SETOR nome = ?, nomeResponsavel = ?, setorResponsavel = ?, descricao = ?, email = ? WHERE (codSetor = ?) ";
+	private static final String sqlVerificarNomeSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE nome = ?";
 	private static final String sqlConsultarSetorNome = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE nome LIKE ?;";
 	private static final String sqlConsultarSetorResp = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE nomeResponsavel LIKE ?;";
 	String msg = null;
@@ -29,8 +30,7 @@ public class SetorDAO {
 		if (setor.getSetorResponsavel() == null) {
 			subordinado = 0;
 		} else {
-			subordinado = consultarSetor(
-					setor.getSetorResponsavel().getCodSetor()).getCodSetor();
+			subordinado = consultarSetor(setor.getSetorResponsavel().getCodSetor()).getCodSetor();
 		}
 		try {
 			conexao = SGDSConexao.getSGDSConexao();
@@ -57,13 +57,12 @@ public class SetorDAO {
 
 	public String alterarSetor(Setor setor) throws Exception {
 		Connection conexao = null;
-		
+
 		int subordinado;
 		if (setor.getSetorResponsavel() == null) {
 			subordinado = 0;
 		} else {
-			subordinado = consultarSetor(
-					setor.getSetorResponsavel().getCodSetor()).getCodSetor();
+			subordinado = consultarSetor(setor.getSetorResponsavel().getCodSetor()).getCodSetor();
 		}
 		try {
 			conexao = SGDSConexao.getSGDSConexao();
@@ -105,9 +104,9 @@ public class SetorDAO {
 				comando = conexao.prepareStatement(sqlDeletarSetor);
 				comando.setInt(1, cod);
 				comando.execute();
-				msg = "Setor excluído com sucesso";
+				msg = "Setor excluï¿½do com sucesso";
 			} else {
-				msg = "Setor não pode ser excluído, existem servidores associados";
+				msg = "Setor nï¿½o pode ser excluï¿½do, existem servidores associados";
 			}
 		} catch (SQLException e) {
 			msg = "NÃ£o foi possivel excluir!\n" + e.getMessage();
@@ -131,8 +130,7 @@ public class SetorDAO {
 			retorno.next();
 			retornarSetor.setCodSetor(retorno.getInt("codSetor"));
 			retornarSetor.setNome(retorno.getString("nome"));
-			retornarSetor.setNomeResponsavel(retorno
-					.getString("nomeResponsavel"));
+			retornarSetor.setNomeResponsavel(retorno.getString("nomeResponsavel"));
 			retornarSetor.setEmail(retorno.getString("email"));
 			retornarSetor.setDescricao(retorno.getString("descricao"));
 			Setor resp = new Setor();
@@ -164,8 +162,7 @@ public class SetorDAO {
 				setor.setNome(retorno.getString("nome"));
 				setor.setNomeResponsavel(retorno.getString("nomeResponsavel"));
 				if (retorno.getInt("setorResponsavel") > 0) {
-					setor.setSetorResponsavel(new SetorDAO()
-							.consultarSetor(retorno.getInt("setorResponsavel")));
+					setor.setSetorResponsavel(new SetorDAO().consultarSetor(retorno.getInt("setorResponsavel")));
 				} else {
 					setor.setSetorResponsavel(new Setor());
 				}
@@ -175,8 +172,7 @@ public class SetorDAO {
 				setores.add(setor);
 			}
 		} catch (SQLException e) {
-			System.out
-					.println("NÃ£o foi possivel conectar!\n" + e.getMessage());
+			System.out.println("NÃ£o foi possivel conectar!\n" + e.getMessage());
 		} finally {
 			if (comando != null)
 				comando.close();
@@ -185,23 +181,23 @@ public class SetorDAO {
 		}
 		return setores;
 	}
-	
+
 	public List<Setor> consultarSetores(String selecao, String filtroSetor) throws Exception {
 		Connection conexao = null;
 		List<Setor> setores = new ArrayList<Setor>();
 		try {
-			conexao =  SGDSConexao.getSGDSConexao();
-			if(selecao.equals("nome"))
+			conexao = SGDSConexao.getSGDSConexao();
+			if (selecao.equals("nome"))
 				comando = conexao.prepareStatement(sqlConsultarSetorNome);
-			else if(selecao.equals("nomeResponsavel"))
+			else if (selecao.equals("nomeResponsavel"))
 				comando = conexao.prepareStatement(sqlConsultarSetorResp);
 			else
 				System.out.println("ERROR");
-			comando.setString(1, "%"+filtroSetor+"%");
-			//retorno = null;			
+			comando.setString(1, "%" + filtroSetor + "%");
+			// retorno = null;
 			retorno = comando.executeQuery();
-			//System.out.println(selecao);
-			//System.out.println(filtroSetor);
+			// System.out.println(selecao);
+			// System.out.println(filtroSetor);
 			while (retorno.next()) {
 				Setor setor = new Setor();
 				setor.setCodSetor(retorno.getInt("codSetor"));
@@ -218,11 +214,14 @@ public class SetorDAO {
 				setores.add(setor);
 			}
 		} catch (SQLException e) {
-			System.out.println("Não foi possivel conectar!\n" + e.getMessage());
+			System.out.println("Nï¿½o foi possivel conectar!\n" + e.getMessage());
 		} finally {
-			if(retorno != null) retorno.close();
-			if(comando != null) comando.close();
-			if(conexao != null) conexao.close();
+			if (retorno != null)
+				retorno.close();
+			if (comando != null)
+				comando.close();
+			if (conexao != null)
+				conexao.close();
 		}
 		return setores;
 	}
@@ -251,6 +250,28 @@ public class SetorDAO {
 		}
 		return ativos;
 	}
-}
-	
 
+	public int VerificarNomeSetor(String nome) throws Exception {
+		Connection conexao = null;
+		int cont = 0;
+		try {
+			conexao = SGDSConexao.getSGDSConexao();
+			comando = conexao.prepareStatement(sqlVerificarNomeSetor);
+			comando.setString(1, nome);
+
+			retorno = comando.executeQuery();
+			retorno.next();
+			cont = Integer.parseInt(retorno.getString("verificar"));
+
+		} catch (SQLException e) {
+			msg = "Nï¿½o foi possivel verificar!\n" + e.getMessage();
+		} finally {
+			if (comando != null)
+				comando.close();
+			if (conexao != null)
+				conexao.close();
+		}
+		return cont;
+	}
+
+}
