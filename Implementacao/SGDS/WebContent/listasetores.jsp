@@ -1,18 +1,17 @@
 <%@include file="cabecalho.jsp" %>
 <div id="main">
-		<form id="formListaSetor" action="">
+		<form id="formListaSetor" action="ControleSetor?acao=filtrar" method="post">
 			<textfield>		
 				<p>
 				Pesquisa: 
-				<input id="filtroSetor" class="" name="filtroSetor">			
-				<input type="radio" class="radioButton" name="filtro" value="setor" />
+				<input id="filtroSetor" class="text" name="filtroSetor">			
+				<input type="radio" class="radioButton" name="selecao" value="nome" checked="checked"/>
 				Setor
-	            <input type="radio" class="radioButton" name="filtro" value="responsavel" />
+	            <input type="radio" class="radioButton" name="selecao" value="nomeResponsavel" />
 	            Responsavel
-	            <input id="botaoListaSetor" type="submit" value="Listar" />
+	            <input id="botaoListaSetor" type="submit" value="Filtrar" />
 	            </p>
-			</textfield>
-		 
+			</textfield>		 
 		</form>
 
 	<div id="tabela">
@@ -22,7 +21,7 @@
 				<th> Setor Responsavel </th>
 				<th> Nome do Responsável </th>
 				<th> E-mail </th>
-				<th> Editar </th>
+				<th id="editar"> Editar </th>
 			</tr>
 			<%= request.getAttribute("lista") %>
 		</table>

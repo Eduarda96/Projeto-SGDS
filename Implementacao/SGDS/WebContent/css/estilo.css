@@ -97,7 +97,6 @@ input:focus {
 }
 
 #tabela {
-	background-color: limegreen;
 	left: 35%;
 	margin: 0 auto;
 	width: 560px;
@@ -298,4 +297,8 @@ nav{
 .radioButton {
 	width: 20px;
 	margin: 0;
+}
+
+#editar{
+width:90px;
 }
