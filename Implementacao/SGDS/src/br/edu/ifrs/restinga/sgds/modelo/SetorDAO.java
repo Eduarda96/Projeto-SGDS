@@ -19,6 +19,8 @@ public class SetorDAO {
 	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
 	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
 	private static final String sqlAlterarSetor = "UPDATE SETOR nome = ?, nomeResponsavel = ?, setorResponsavel = ?, descricao = ?, email = ? WHERE (codSetor = ?) ";
+	private static final String sqlConsultarSetorNome = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE nome LIKE ?;";
+	private static final String sqlConsultarSetorResp = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE nomeResponsavel LIKE ?;";
 	String msg = null;
 
 	public String cadastrar(Setor setor) throws Exception {
@@ -180,6 +182,47 @@ public class SetorDAO {
 				comando.close();
 			if (conexao != null)
 				conexao.close();
+		}
+		return setores;
+	}
+	
+	public List<Setor> consultarSetores(String selecao, String filtroSetor) throws Exception {
+		Connection conexao = null;
+		List<Setor> setores = new ArrayList<Setor>();
+		try {
+			conexao =  SGDSConexao.getSGDSConexao();
+			if(selecao.equals("nome"))
+				comando = conexao.prepareStatement(sqlConsultarSetorNome);
+			else if(selecao.equals("nomeResponsavel"))
+				comando = conexao.prepareStatement(sqlConsultarSetorResp);
+			else
+				System.out.println("ERROR");
+			comando.setString(1, "%"+filtroSetor+"%");
+			//retorno = null;			
+			retorno = comando.executeQuery();
+			//System.out.println(selecao);
+			//System.out.println(filtroSetor);
+			while (retorno.next()) {
+				Setor setor = new Setor();
+				setor.setCodSetor(retorno.getInt("codSetor"));
+				setor.setNome(retorno.getString("nome"));
+				setor.setNomeResponsavel(retorno.getString("nomeResponsavel"));
+				if (retorno.getInt("setorResponsavel") > 0) {
+					setor.setSetorResponsavel(new SetorDAO().consultarSetor(retorno.getInt("setorResponsavel")));
+				} else {
+					setor.setSetorResponsavel(new Setor());
+				}
+				setor.setDescricao(retorno.getString("descricao"));
+				setor.setEmail(retorno.getString("email"));
+				setor.setAtivo(retorno.getBoolean("ativo"));
+				setores.add(setor);
+			}
+		} catch (SQLException e) {
+			System.out.println("Não foi possivel conectar!\n" + e.getMessage());
+		} finally {
+			if(retorno != null) retorno.close();
+			if(comando != null) comando.close();
+			if(conexao != null) conexao.close();
 		}
 		return setores;
 	}

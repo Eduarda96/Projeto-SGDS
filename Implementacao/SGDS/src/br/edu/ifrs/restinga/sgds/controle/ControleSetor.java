@@ -53,6 +53,9 @@ public class ControleSetor extends HttpServlet {
 		case "consultarAlteracao":
 			consultarAlteracaoSetor(request, response);
 			break;
+		case "filtrar":
+			listarSetores(request, response);
+			break;
 
 		default:
 			break;
@@ -114,6 +117,38 @@ public class ControleSetor extends HttpServlet {
 			request.setAttribute("lista", print);
 			request.getRequestDispatcher("listasetores.jsp").forward(request,
 					response);
+		} catch (Exception e) {
+			request.setAttribute("erro", e.getMessage());
+			request.getRequestDispatcher("erro.jsp").forward(request, response);
+		}
+
+	}
+	
+	protected void listarSetores(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+
+		try {
+			request.setCharacterEncoding("UTF-8");
+			String selecao = request.getParameter("selecao");
+			String filtroSetor = request.getParameter("filtroSetor");			
+			List<Setor> listar = new ArrayList<Setor>();
+			SetorDAO listarDao = new SetorDAO();
+			String print = "";
+
+			listar.addAll(listarDao.consultarSetores(selecao,filtroSetor));
+			for (Setor enviar : listar) {
+				print += "<tr><td>" + enviar.getNome() + 
+						"<td>" + enviar.getSetorResponsavel().getNome() +
+						"<td>" + enviar.getNomeResponsavel() +
+						"<td>" + enviar.getEmail();
+				print += "<td><div class=\"divColunaEditar\"><ul>"
+						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
+						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
+						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
+			}
+			 request.setAttribute("lista", print);
+			 request.getRequestDispatcher("listasetores.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
