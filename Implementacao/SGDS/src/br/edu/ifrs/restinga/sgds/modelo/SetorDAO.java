@@ -17,8 +17,8 @@ public class SetorDAO {
 	private static final String sqlConsultarSetoresAtivos = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE ativo = true;";
 	ResultSet retorno;
 	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
-	private static final String sqlDeletarSetor = "UPDATE SETOR  SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
-	private static final String sqlAlterarSetor = "UPDATE SETOR nome = ?, nomeResponsavel = ?, setorResponsavel = ?, descricao = ?, email = ? WHERE (codSetor = ?) ";
+	private static final String sqlDeletarSetor = "UPDATE SETOR SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
+	private static final String sqlAlterarSetor = "UPDATE SETOR SET nome = ?, nomeResponsavel = ?, setorResponsavel = ?, descricao = ?, email = ? WHERE (codSetor = ?) ";
 	private static final String sqlVerificarNomeSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE nome = ?";
 	private static final String sqlConsultarSetorNome = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE nome LIKE ?;";
 	private static final String sqlConsultarSetorResp = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE nomeResponsavel LIKE ?;";
