@@ -166,7 +166,7 @@ public class ControleSetor extends HttpServlet {
 						response);
 			}
 
-			request.getRequestDispatcher("main.jsp").forward(request, response);
+			request.getRequestDispatcher("ControleSetor?acao=listar").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
