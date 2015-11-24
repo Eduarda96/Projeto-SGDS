@@ -8,7 +8,7 @@
 				<input type="radio" class="radioButton" name="selecao" value="nome" checked="checked"/>
 				Setor
 	            <input type="radio" class="radioButton" name="selecao" value="nomeResponsavel" />
-	            Responsavel
+	            Coordenador do Setor
 	            <input id="botaoListaSetor" type="submit" value="Filtrar" />
 	            </p>
 			</textfield>		 
@@ -18,8 +18,8 @@
 		<table border ="1">
 			<tr>
 				<th> Nome do Setor </th>
-				<th> Setor Responsavel </th>
-				<th> Nome do Responsável </th>
+				<th> Setor Responsável </th>
+				<th> Coordenador do Setor </th>
 				<th> E-mail </th>
 				<th id="editar"> Editar </th>
 			</tr>
