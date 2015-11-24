@@ -97,15 +97,45 @@ input:focus {
 }
 
 #tabela {
+	background-color: limegreen;
 	left: 35%;
 	margin: 0 auto;
-	width: 560px;
+	width: 750px;
 	
+}
+th{
+	background:lightgray;
 }
 
 #tabela  table{
-	width:560px;
+	width:750px;
 	height:100px;
+<<<<<<< HEAD
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin-top:50px;
+}
+
+#coluna1{
+	width:150px;
+}
+
+#coluna2{
+	width:150px;
+}
+
+#coluna3{
+	width:150px;
+}
+
+#coluna4{
+	width:150px;
+}
+
+#coluna5{
+	width:150px;
+=======
+>>>>>>> branch 'master' of file:///C:\Users\Aschley\Documents\GitHub\Projeto-SGDS
 }
 
 .iconeEditar, .iconeVisualizar, .iconeDeletar{
@@ -229,7 +259,7 @@ nav{
 	border-right: solid 1px;
 	border-left: solid 1px;
 	border-bottom: solid 1px;
-	background-color: lightgray;
+	background-color: yellowgreen;
 	width: 100%;
 	height:25px;
 }
@@ -297,8 +327,4 @@ nav{
 .radioButton {
 	width: 20px;
 	margin: 0;
-}
-
-#editar{
-width:90px;
 }
