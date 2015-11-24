@@ -19,7 +19,7 @@ public class SetorDAO {
 	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
 	private static final String sqlDeletarSetor = "UPDATE SETOR SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
 	private static final String sqlAlterarSetor = "UPDATE SETOR SET nome = ?, nomeResponsavel = ?, setorResponsavel = ?, descricao = ?, email = ? WHERE (codSetor = ?) ";
-	private static final String sqlVerificarNomeSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE nome = ?";
+	private static final String sqlVerificarNomeSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE ((nome = ?) AND (ativo = 1))";
 	private static final String sqlConsultarSetorNome = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE nome LIKE ? AND ativo = true;";
 	private static final String sqlConsultarSetorResp = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE nomeResponsavel LIKE ? AND ativo = true;";
 	String msg = null;
@@ -104,9 +104,9 @@ public class SetorDAO {
 				comando = conexao.prepareStatement(sqlDeletarSetor);
 				comando.setInt(1, cod);
 				comando.execute();
-				msg = "Setor exclu�do com sucesso";
+				msg = "Setor excluido com sucesso";
 			} else {
-				msg = "Setor n�o pode ser exclu�do, existem servidores associados";
+				msg = "Setor nao pode ser excluido, existem servidores associados";
 			}
 		} catch (SQLException e) {
 			msg = "Não foi possivel excluir!\n" + e.getMessage();
@@ -214,7 +214,7 @@ public class SetorDAO {
 				setores.add(setor);
 			}
 		} catch (SQLException e) {
-			System.out.println("N�o foi possivel conectar!\n" + e.getMessage());
+			System.out.println("Nao foi possivel conectar!\n" + e.getMessage());
 		} finally {
 			if (retorno != null)
 				retorno.close();
@@ -264,7 +264,7 @@ public class SetorDAO {
 			cont = Integer.parseInt(retorno.getString("verificar"));
 
 		} catch (SQLException e) {
-			msg = "N�o foi possivel verificar!\n" + e.getMessage();
+			msg = "Nao foi possivel verificar!\n" + e.getMessage();
 		} finally {
 			if (comando != null)
 				comando.close();

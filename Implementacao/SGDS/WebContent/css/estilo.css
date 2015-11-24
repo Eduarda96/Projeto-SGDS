@@ -46,13 +46,9 @@ body{
 	width: 400px;
 }
 
-
-
 /* form:#formLogar {
 	action="AutenticarUsuario";
 } */
-
-
 
 #login{
 	width: 100%;
@@ -60,15 +56,12 @@ body{
 	border-color:solid 1px black; 
 }
 
-
-
 label {
 	position: relative;
 	margin: auto;
 	display: inline-block;
 	font-size: 0.9em;
 	font-weight: bold;
-	
 }
 
 .labelLogin {
@@ -100,8 +93,8 @@ input:focus {
 	left: 35%;
 	margin: 0 auto;
 	width: 750px;
-	
 }
+
 th{
 	background:lightgray;
 }
@@ -109,7 +102,6 @@ th{
 #tabela  table{
 	width:750px;
 	height:100px;
-<<<<<<< HEAD
 	border: 1px solid black;
 	border-collapse: collapse;
 	margin-top:50px;
@@ -133,8 +125,6 @@ th{
 
 #coluna5{
 	width:150px;
-=======
->>>>>>> branch 'master' of file:///C:\Users\Aschley\Documents\GitHub\Projeto-SGDS
 }
 
 .iconeEditar, .iconeVisualizar, .iconeDeletar{
@@ -203,7 +193,6 @@ th{
 	background-color: white;
 	border-left: solid 1px;
 	border-right: solid 1px;
-	
 }
 
 footer {
@@ -218,11 +207,9 @@ footer {
 	margin: 0 auto;
 	width: 400px;
 	height: 200px;
-	
 } 
 
 #formCadastroSetor{
-	
 	padding-top: 30px;
 	padding-left: 15px;
 }
@@ -240,21 +227,7 @@ textarea{
 	resize: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 nav{
-
 	border-right: solid 1px;
 	border-left: solid 1px;
 	border-bottom: solid 1px;
@@ -314,8 +287,6 @@ nav{
 
 #formListaSetor{
 	padding-left: 20px;
-	
-	
 }
 
 #botaoListaSetor{

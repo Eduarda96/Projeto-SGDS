@@ -155,10 +155,10 @@ public class ControleSetor extends HttpServlet {
 				int test = cadastrarDAO.VerificarNomeSetor(cadastrar.getNome());
 			
 				if (test != 0) {
-					request.setAttribute("msg", "Nome do setor j� cadastrado.");
+					request.setAttribute("msg", "Nome do setor ja cadastrado.");
 				} else {
 					msg = cadastrarDAO.cadastrar(cadastrar);
-					request.setAttribute("msg", msg+test);
+					request.setAttribute("msg", msg);
 				}
 			} else {
 				request.setAttribute("erro", mens_erro);
@@ -348,7 +348,7 @@ public class ControleSetor extends HttpServlet {
 						"<td>" + enviar.getEmail();
 				print += "<td><div class=\"divColunaEditar\"><ul>"
 						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
-						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informa��es do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
+						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informacoes do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
 						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
 			}
 			 request.setAttribute("lista", print);
