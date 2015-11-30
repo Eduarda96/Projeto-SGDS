@@ -25,6 +25,8 @@
 			</tr>
 			<%= request.getAttribute("lista") %>
 		</table>
+		<!-- <a href="ControleSetor?acao=listar&page=<%= request.getAttribute("anterior") %>">Anterior</a> -->
+		<!-- <a href="ControleSetor?acao=listar&page=<%= request.getAttribute("proximo") %>">Proximo</a> -->
 	</div>
 </div>
 

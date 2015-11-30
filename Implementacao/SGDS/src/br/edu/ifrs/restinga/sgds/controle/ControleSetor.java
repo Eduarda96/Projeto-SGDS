@@ -93,10 +93,22 @@ public class ControleSetor extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			List<Setor> listar = new ArrayList<Setor>();
 			SetorDAO listarDao = new SetorDAO();
+			String get = (String) request.getAttribute("page");
+			int page = 0;
+			int ant = -1;
+			int pro = -1;
+			if (get != null) {
+				page = Integer.parseInt(get);
+				page *= 10;
+			} else {
+				page = 10;
+			}
+			int linha = 1;
 			String print = "";
 
 			listar.addAll(listarDao.consultarSetoresAtivos());
 			for (Setor enviar : listar) {
+				if ((page-9 <= linha) && (page >= linha)) {
 				print += "<tr><td>" + enviar.getNome() + "<td>" + enviar.getSetorResponsavel().getNome() + "<td>"
 						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail();
 				print += "<td><div class=\"divColunaEditar\"><ul>" + "<li><a href=\"ControleSetor?acao=consultarAlteracao&codigo="
@@ -106,7 +118,15 @@ public class ControleSetor extends HttpServlet {
 						+ "\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
 						+ "<li><a href=\"ControleSetor?acao=deletar&codigo=" + enviar.getCodSetor()
 						+ "\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
+				} else if (linha < page-9) {
+					ant = (linha/10)-1;
+				} else if (linha > page) {
+					pro = (page/10)+1;
+				}
+				linha++;
 			}
+			if (ant != -1) { request.setAttribute("anterior", ant); }
+			if (pro != -1) { request.setAttribute("proximo", pro); }
 			request.setAttribute("lista", print);
 			request.getRequestDispatcher("listasetores.jsp").forward(request, response);
 		} catch (Exception e) {

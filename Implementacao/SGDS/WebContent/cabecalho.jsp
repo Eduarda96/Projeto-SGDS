@@ -28,7 +28,7 @@
 					<li><a href="ControleSetor?acao=listar">Setor</a>
 						<ul>
 							<li><a href="ControleSetor?acao=selecao">Incluir</a></li>
-							<li><a href="ControleSetor?acao=listar">Listar</a></li>
+							<li><a href="ControleSetor?acao=listar&page=1">Listar</a></li>
 						</ul>
 					</li>
 					<li><a href="#">Lista</a>
