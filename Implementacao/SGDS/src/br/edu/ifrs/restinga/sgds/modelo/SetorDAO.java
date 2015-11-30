@@ -106,7 +106,7 @@ public class SetorDAO {
 				comando.execute();
 				msg = "Setor excluido com sucesso";
 			} else {
-				msg = "Setor nao pode ser excluido, existem servidores associados";
+				msg = "Setor nao pode ser excluido. Para excluir este setor, desvincular os setores subordinados!";
 			}
 		} catch (SQLException e) {
 			msg = "Não foi possivel excluir!\n" + e.getMessage();

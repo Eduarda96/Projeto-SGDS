@@ -13,40 +13,41 @@
 			<script>alert(<%= request.getAttribute("acao")%>);</script>
 			<p>
 				<label for="nome" class="labelFormularioSetor">Nome:</label>
-				<input type="text" id="nome" class="inputFormularioSetor" required="required" name="nome" <% if (request.getAttribute("nome") != null) { %> value="<%= request.getAttribute("nome") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> disabled="disabled" <% } %>>
+				<input type="text" id="nome" class="inputFormularioSetor" required="required" name="nome" <% if (request.getAttribute("nome") != null) { %> value="<%= request.getAttribute("nome") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>>
 			 </p>
 			 
 			<p>
 				<label for="nome" class="labelFormularioSetor">Responsável:</label>
-				<input type="text" id="nomeResponsavel" class="inputFormularioSetor" required="required" name="nomeResponsavel" <% if (request.getAttribute("nomeResponsavel") != null) { %> value="<%= request.getAttribute("nomeResponsavel") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> disabled="disabled" <% } %>>
+				<input type="text" id="nomeResponsavel" class="inputFormularioSetor" required="required" name="nomeResponsavel" <% if (request.getAttribute("nomeResponsavel") != null) { %> value="<%= request.getAttribute("nomeResponsavel") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>>
 			 </p> 
 			 
 			 <p>
 				<label for="nome" class="labelFormularioSetor">E-mail:</label>
-				<input type="email" id="email" class="inputFormularioSetor" name="email" <% if (request.getAttribute("email") != null) { %> value="<%= request.getAttribute("email") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> disabled="disabled" <% } %>>
+				<input type="email" id="email" class="inputFormularioSetor" name="email" <% if (request.getAttribute("email") != null) { %> value="<%= request.getAttribute("email") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>>
 			 </p>
 			 		 
 			 <p>		 
 			 	<label for= "setores" class="labelFormularioSetor">Setores:</label>
-			 	<select name="setores" class="inputFormularioSetor" <% if (acao == "visualizar") {%> disabled="disabled" <% } %>>
+			 	<select name="setores" class="inputFormularioSetor" <% if (acao == "visualizar") {%> readonly="true" <% } %>>
 				 	<%= request.getAttribute("ativos") %>
 			 	</select>
 			 </p>
 			
 			 <p>
 				<label for="decricao" class="labelFormularioSetor" id="labelDescricao" >Descrição:</label>
-				<textarea rows="12" class="inputFormularioSetor" name="descricao" <% if (acao == "visualizar") {%> disabled="disabled" <% } %>><% if (request.getAttribute("descricao") != null) { out.print(request.getAttribute("descricao")); } %></textarea>
+				<textarea rows="12" class="inputFormularioSetor" name="descricao" <% if (acao == "visualizar") {%> readonly="true" <% } %>><% if (request.getAttribute("descricao") != null) { out.print(request.getAttribute("descricao")); } %></textarea>
 			 </p>
 			 
 			 <p class="submit">
-			 	<label for="submit" class="labelFormularioSetor" id="labelDescricao" ></label>
+			 	<input type="button" onclick="visuvoltar(); " value="Voltar"> 
+			 	<label for="alterar" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 	<% if (acao == "visualizar") { %> 
-			 		<input type="button" onclick="visuvoltar(); " value="Voltar"> 
-			 		<label for="alterar" class="labelFormularioSetor" id="labelDescricao" ></label>
+			 		<label for="submit" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 		<input type="button" onclick="visualterar(<%= cod %>); " value="Alterar">
 			 		<label for="excluir" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 		<input type="button" onclick="visudeletar(<%= cod %>);" value="Excluir">
 			 	<% } else { %>
+			 		<label for="submit" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 		<input type="submit" onclick="return valid('formcadrhsetor'); " value="Enviar">
 			 	<% } %>
 			  	<% if (acao == "selecao") {%>

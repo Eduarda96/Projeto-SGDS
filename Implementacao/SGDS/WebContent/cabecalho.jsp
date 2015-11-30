@@ -16,7 +16,7 @@
 		}
 	%>
 	<div id="cabecalho">
-		<header>#
+		<header>
 			<div id="header"></div>
 			<nav>
 				<ul class="menu">
@@ -27,16 +27,17 @@
 					</li>
 					<li><a href="ControleSetor?acao=listar">Setor</a>
 						<ul>
-							<li><a href="ControleSetor?acao=selecao">Incluir</a></li>
+							<li><a href="ControleSetor?acao=selecao">Cadastrar</a></li>
 							<li><a href="ControleSetor?acao=listar&page=1">Listar</a></li>
 						</ul>
 					</li>
-					<li><a href="#">Lista</a>
-						<ul>
+					<li><a href="#">Relatorios</a>
+						<!-- <ul>
 							<li><a href="#">Opção 1</a></li>
 							<li><a href="#">Opção 2</a></li>
-						</ul>
+						</ul> -->
 					</li>
+					<li><a href="index.html">Sair</a></li>
 				</ul>
 			</nav>
 		</header>

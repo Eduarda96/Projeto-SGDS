@@ -366,10 +366,17 @@ public class ControleSetor extends HttpServlet {
 						"<td>" + enviar.getSetorResponsavel().getNome() +
 						"<td>" + enviar.getNomeResponsavel() +
 						"<td>" + enviar.getEmail();
-				print += "<td><div class=\"divColunaEditar\"><ul>"
-						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
-						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informacoes do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
-						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
+				print += "<td><div class=\"divColunaEditar\"><ul>" + "<li><a href=\"ControleSetor?acao=consultarAlteracao&codigo="
+						+ enviar.getCodSetor()
+						+ "\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
+						+ "<li><a href=\"ControleSetor?acao=visualizar&codigo=" + enviar.getCodSetor()
+						+ "\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
+						+ "<li><a href=\"ControleSetor?acao=deletar&codigo=" + enviar.getCodSetor()
+						+ "\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
+//				print += "<td><div class=\"divColunaEditar\"><ul>"
+//						+ "<li><a href=\"\"><div class=\"iconeEditar\" alt=\"Editar Setor.\" title=\"Editar Setor\"></div></a></li>"
+//						+ "<li><a href=\"\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informacoes do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
+//						+ "<li><a href=\"\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
 			}
 			 request.setAttribute("lista", print);
 			 request.getRequestDispatcher("listasetores.jsp").forward(request, response);
