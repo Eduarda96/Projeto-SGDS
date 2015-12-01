@@ -320,7 +320,7 @@ public class ControleSetor extends HttpServlet {
 			SetorDAO selecaoDao = new SetorDAO();
 			String select = "<option value=\"0\">Sem Responsavel</option>";
 
-			selecao.addAll(selecaoDao.selecaoSetorResponsavel());
+			selecao.addAll(selecaoDao.selecaoSetorResponsavel(cod));
 			for (Setor enviar : selecao) {
 				select += "<option value=\"" + enviar.getCodSetor() + "\">"
 						+ enviar.getNome() + "</option>";

@@ -10,11 +10,12 @@ import java.util.List;
 public class SetorDAO {
 	// Manipular classe Setor no Banco;
 	PreparedStatement comando;
-	private static final String sqlSelecaoSetorResponsavel = "SELECT codSetor, nome FROM SETOR WHERE ativo = true;";
+	private static final String sqlSelecaoSetorResponsavel = "SELECT codSetor, nome FROM SETOR WHERE ativo = true ORDER BY nome;";
+	private static final String sqlSelecaoSetorResponsavelCod = "SELECT codSetor, nome FROM SETOR WHERE ativo = true AND codSetor != ? ORDER BY nome;";
 	private static final String sqlCadastrar = "INSERT INTO SETOR (nome, nomeResponsavel, descricao, email, ativo, setorResponsavel) "
 			+ "VALUES (?, ?, ?, ?, ?, ?);";
 	private static final String sqlConsultarSetor = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE codSetor = ?;";
-	private static final String sqlConsultarSetoresAtivos = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE ativo = true;";
+	private static final String sqlConsultarSetoresAtivos = "SELECT codSetor, nome, nomeResponsavel, setorResponsavel, descricao, email, ativo FROM SETOR WHERE ativo = true ORDER BY nome;";
 	ResultSet retorno;
 	private static final String sqlVerificarSetor = "SELECT COUNT(*) AS verificar FROM SETOR WHERE setorResponsavel = ?";
 	private static final String sqlDeletarSetor = "UPDATE SETOR SET ativo = 0, setorResponsavel = 0 WHERE (codSetor = ?) ";
@@ -232,6 +233,32 @@ public class SetorDAO {
 		try {
 			conexao = SGDSConexao.getSGDSConexao();
 			comando = conexao.prepareStatement(sqlSelecaoSetorResponsavel);
+			retorno = comando.executeQuery();
+			while (retorno.next()) {
+				Setor setor = new Setor();
+				setor.setCodSetor(retorno.getInt("codSetor"));
+				setor.setNome(retorno.getString("nome"));
+				ativos.add(setor);
+			}
+		} catch (SQLException e) {
+			throw new Exception("Não foi possivel conectar!\n"
+					+ e.getMessage());
+		} finally {
+			if (comando != null)
+				comando.close();
+			if (conexao != null)
+				conexao.close();
+		}
+		return ativos;
+	}
+
+	public List<Setor> selecaoSetorResponsavel(int cod) throws Exception {
+		List<Setor> ativos = new ArrayList<Setor>();
+		Connection conexao = null;
+		try {
+			conexao = SGDSConexao.getSGDSConexao();
+			comando = conexao.prepareStatement(sqlSelecaoSetorResponsavelCod);
+			comando.setInt(1, cod);
 			retorno = comando.executeQuery();
 			while (retorno.next()) {
 				Setor setor = new Setor();
