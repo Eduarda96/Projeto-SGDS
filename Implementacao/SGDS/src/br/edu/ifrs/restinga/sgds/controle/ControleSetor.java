@@ -108,6 +108,14 @@ public class ControleSetor extends HttpServlet {
 
 			listar.addAll(listarDao.consultarSetoresAtivos());
 			for (Setor enviar : listar) {
+				//Andrius fez cacaca aki...
+				if(enviar.getNomeResponsavel() == null || enviar.getNomeResponsavel().equals(""))
+					enviar.setNomeResponsavel("");
+				if(enviar.getEmail() == null || enviar.getEmail().equals(""))
+					enviar.setEmail("");
+				if(enviar.getSetorResponsavel().getNome() == null || enviar.getSetorResponsavel().getNome().equals(""))
+					enviar.getSetorResponsavel().setNome("");;
+				//
 				if ((page-9 <= linha) && (page >= linha)) {
 				print += "<tr><td>" + enviar.getNome() + "<td>" + enviar.getSetorResponsavel().getNome() + "<td>"
 						+ enviar.getNomeResponsavel() + "<td>" + enviar.getEmail();
@@ -362,6 +370,14 @@ public class ControleSetor extends HttpServlet {
 
 			listar.addAll(listarDao.consultarSetores(selecao,filtroSetor));
 			for (Setor enviar : listar) {
+				//Andrius fez cacaca aki...
+				if(enviar.getNomeResponsavel() == null || enviar.getNomeResponsavel().equals(""))
+					enviar.setNomeResponsavel("");
+				if(enviar.getEmail() == null || enviar.getEmail().equals(""))
+					enviar.setEmail("");
+				if(enviar.getSetorResponsavel().getNome() == null || enviar.getSetorResponsavel().getNome().equals(""))
+					enviar.getSetorResponsavel().setNome("");;
+				//
 				print += "<tr><td>" + enviar.getNome() + 
 						"<td>" + enviar.getSetorResponsavel().getNome() +
 						"<td>" + enviar.getNomeResponsavel() +
