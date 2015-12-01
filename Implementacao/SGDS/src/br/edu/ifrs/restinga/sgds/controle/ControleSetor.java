@@ -80,8 +80,8 @@ public class ControleSetor extends HttpServlet {
 			request.setAttribute("ativos", select);
 			request.getRequestDispatcher("cadastrosetor.jsp").forward(request, response);
 		} catch (Exception e) {
-			request.setAttribute("erro", e.getMessage());
-			request.getRequestDispatcher("erro.jsp").forward(request, response);
+			request.setAttribute("msg", e.getMessage());
+			request.getRequestDispatcher("main.jsp").forward(request, response);
 		}
 	}
 
@@ -138,8 +138,8 @@ public class ControleSetor extends HttpServlet {
 			request.setAttribute("lista", print);
 			request.getRequestDispatcher("listasetores.jsp").forward(request, response);
 		} catch (Exception e) {
-			request.setAttribute("erro", e.getMessage());
-			request.getRequestDispatcher("erro.jsp").forward(request, response);
+			request.setAttribute("msg", e.getMessage());
+			request.getRequestDispatcher("main.jsp").forward(request, response);
 		}
 
 	}
@@ -189,15 +189,15 @@ public class ControleSetor extends HttpServlet {
 					request.setAttribute("msg", msg);
 				}
 			} else {
-				request.setAttribute("erro", mens_erro);
-				request.getRequestDispatcher("erro.jsp").forward(request,
+				request.setAttribute("msg", mens_erro);
+				request.getRequestDispatcher("main.jsp").forward(request,
 						response);
 			}
 
 			request.getRequestDispatcher("ControleSetor?acao=listar").forward(request, response);
 		} catch (Exception e) {
-			request.setAttribute("erro", e.getMessage());
-			request.getRequestDispatcher("erro.jsp").forward(request, response);
+			request.setAttribute("msg", e.getMessage());
+			request.getRequestDispatcher("main.jsp").forward(request, response);
 		}
 	}
 
@@ -212,8 +212,8 @@ public class ControleSetor extends HttpServlet {
 			request.getRequestDispatcher("ControleSetor?acao=listar").forward(
 					request, response);
 		} catch (Exception e) {
-			request.setAttribute("erro", e.getMessage());
-			request.getRequestDispatcher("erro.jsp").forward(request, response);
+			request.setAttribute("msg", e.getMessage());
+			request.getRequestDispatcher("main.jsp").forward(request, response);
 		}
 	}
 
@@ -248,8 +248,8 @@ public class ControleSetor extends HttpServlet {
 			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,
 					response);
 		} catch (Exception e) {
-			request.setAttribute("erro", e.getMessage());
-			request.getRequestDispatcher("erro.jsp").forward(request, response);
+			request.setAttribute("msg", e.getMessage());
+			request.getRequestDispatcher("main.jsp").forward(request, response);
 		}
 	}
 
@@ -290,15 +290,15 @@ public class ControleSetor extends HttpServlet {
 				msg = alterarDAO.alterarSetor(alterar);
 				request.setAttribute("msg", msg);
 			} else {
-				request.setAttribute("erro", mens_erro);
-				request.getRequestDispatcher("erro.jsp").forward(request,
+				request.setAttribute("msg", mens_erro);
+				request.getRequestDispatcher("main.jsp").forward(request,
 						response);
 			}
 
 			request.getRequestDispatcher("ControleSetor?acao=listar").forward(request, response);
 		} catch (Exception e) {
-			request.setAttribute("erro", e.getMessage());
-			request.getRequestDispatcher("erro.jsp").forward(request, response);
+			request.setAttribute("msg", e.getMessage());
+			request.getRequestDispatcher("main.jsp").forward(request, response);
 		}
 	}
 	
@@ -330,8 +330,8 @@ public class ControleSetor extends HttpServlet {
 			request.getRequestDispatcher("cadastrosetor.jsp").forward(request,
 					response);
 		} catch (Exception e) {
-			request.setAttribute("erro", e.getMessage());
-			request.getRequestDispatcher("erro.jsp").forward(request, response);
+			request.setAttribute("msg", e.getMessage());
+			request.getRequestDispatcher("main.jsp").forward(request, response);
 		}
 	}
 
@@ -397,8 +397,8 @@ public class ControleSetor extends HttpServlet {
 			 request.setAttribute("lista", print);
 			 request.getRequestDispatcher("listasetores.jsp").forward(request, response);
 		} catch (Exception e) {
-			request.setAttribute("erro", e.getMessage());
-			request.getRequestDispatcher("erro.jsp").forward(request, response);
+			request.setAttribute("msg", e.getMessage());
+			request.getRequestDispatcher("main.jsp").forward(request, response);
 		}
 
 	}
