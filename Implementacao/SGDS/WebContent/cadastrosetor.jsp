@@ -39,20 +39,15 @@
 			 </p>
 			 
 			 <p class="submit">
-			 	<label for="alterar" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 	<input type="button" onclick="visuvoltar(); " value="Voltar"> 
+			 	<input type="button" class="tresbotoes" onclick="visuvoltar(); " value="Voltar"> 
 			 	<% if (acao == "visualizar") { %> 
-			 		<label for="submit" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 		<input type="button" onclick="visualterar(<%= cod %>); " value="Alterar">
-			 		<label for="excluir" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 		<input type="button" onclick="visudeletar(<%= cod %>);" value="Excluir">
+			 		<input type="button" class="tresbotoes" onclick="visualterar(<%= cod %>); " value="Alterar">
+			 		<input type="button" class="tresbotoes" onclick="visudeletar(<%= cod %>);" value="Excluir">
 			 	<% } else { %>
-			 		<label for="submit" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 		<input type="submit" onclick="return valid('formcadrhsetor'); " value="Enviar">
+			 		<input type="submit" class="tresbotoes" onclick="return valid('formcadrhsetor'); " value="Enviar">
 			 	<% } %>
 			  	<% if (acao == "selecao") {%>
-			 		<label for="decricao" class="labelFormularioSetor" id="labelDescricao" ></label>
-			 		<input type="reset" value="Limpar">
+			 		<input type="reset" class="tresbotoes" value="Limpar">
 			 	<% } %>
 			 </p>
 		</form>
