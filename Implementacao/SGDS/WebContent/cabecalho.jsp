@@ -22,7 +22,7 @@
 				<ul class="menu">
 					<li><a href="#">Servidor</a>
 						<ul>
-							<li><a href="#">Cadastrar</a></li>
+							<li><a href="cadastroservidor.jsp">Cadastrar</a></li>
 						</ul>
 					</li>
 					<li><a href="ControleSetor?acao=listar">Setor</a>
