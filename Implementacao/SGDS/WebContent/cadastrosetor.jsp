@@ -39,8 +39,8 @@
 			 </p>
 			 
 			 <p class="submit">
-			 	<input type="button" onclick="visuvoltar(); " value="Voltar"> 
 			 	<label for="alterar" class="labelFormularioSetor" id="labelDescricao" ></label>
+			 	<input type="button" onclick="visuvoltar(); " value="Voltar"> 
 			 	<% if (acao == "visualizar") { %> 
 			 		<label for="submit" class="labelFormularioSetor" id="labelDescricao" ></label>
 			 		<input type="button" onclick="visualterar(<%= cod %>); " value="Alterar">

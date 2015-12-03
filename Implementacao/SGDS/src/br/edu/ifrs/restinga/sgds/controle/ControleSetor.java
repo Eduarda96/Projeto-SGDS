@@ -93,7 +93,7 @@ public class ControleSetor extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			List<Setor> listar = new ArrayList<Setor>();
 			SetorDAO listarDao = new SetorDAO();
-			String get = (String) request.getAttribute("page");
+			String get = (String) request.getParameter("page");
 			int page = 0;
 			int ant = -1;
 			int pro = -1;
@@ -126,9 +126,9 @@ public class ControleSetor extends HttpServlet {
 						+ "\"><div class=\"iconeVisualizar\" alt=\"Visualizar Informações do Setor.\" title=\"Visualizar Setor\"></div></a></li>"
 						+ "<li><a href=\"ControleSetor?acao=deletar&codigo=" + enviar.getCodSetor()
 						+ "\"><div class=\"iconeDeletar\" alt=\"Deletar Setor.\" title=\"Deletar Setor\"></div></a></li></ul></div>";
-				} else if (linha < page-9) {
-					ant = (linha/10)-1;
-				} else if (linha > page) {
+				} else if (linha == page-10) {
+					ant = (linha/10);
+				} else if ((linha > page) && (linha <= page+10)) {
 					pro = (page/10)+1;
 				}
 				linha++;
@@ -320,7 +320,7 @@ public class ControleSetor extends HttpServlet {
 			SetorDAO selecaoDao = new SetorDAO();
 			String select = "<option value=\"0\">Sem Responsavel</option>";
 
-			selecao.addAll(selecaoDao.selecaoSetorResponsavel());
+			selecao.addAll(selecaoDao.selecaoSetorResponsavel(cod));
 			for (Setor enviar : selecao) {
 				select += "<option value=\"" + enviar.getCodSetor() + "\">"
 						+ enviar.getNome() + "</option>";
