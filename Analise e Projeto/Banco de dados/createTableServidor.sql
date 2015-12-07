@@ -11,7 +11,7 @@ CREATE table SERVIDOR(
 	nome varchar (100) NOT NULL,
 	nomeMae varchar (100),
 	nomePai varchar (100),
-	matriculaSiape int (7) NOT NULL,
+	matriculaSiape varchar (7) NOT NULL,
     senha varchar (256) NOT NULL,
     perfil text NOT NULL,
     sexo varchar (9),
