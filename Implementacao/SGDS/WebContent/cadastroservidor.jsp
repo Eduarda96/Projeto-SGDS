@@ -48,9 +48,9 @@
 			 
 			 <p>
 				<label for="nome" class="labelFormularioServidor">Sexo:</label>
-				<input type="radio" id="sexo" class="inputFormularioServidor" name="sexo" value="masculino"> Masculino <% if (request.getAttribute("sexo") != null) { %> value="<%= request.getAttribute("sexo") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
-				<input type="radio" id="sexo" class="inputFormularioServidor" name="sexo" value="feminino"> Feminino  <% if (request.getAttribute("sexo") != null) { %> value="<%= request.getAttribute("sexo") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
-				<input type="radio" id="sexo" class="inputFormularioServidor" name="sexo" value="outros"> Outros  <% if (request.getAttribute("sexo") != null) { %> value="<%= request.getAttribute("sexo") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
+				<input type="radio" id="sexo" class="radioButton" name="sexo" value="masculino"> Masculino <% if (request.getAttribute("sexo") != null) { %> value="<%= request.getAttribute("sexo") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
+				<input type="radio" id="sexo" class="radioButton" name="sexo" value="feminino"> Feminino  <% if (request.getAttribute("sexo") != null) { %> value="<%= request.getAttribute("sexo") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
+				<input type="radio" id="sexo" class="radioButton" name="sexo" value="outros"> Outros  <% if (request.getAttribute("sexo") != null) { %> value="<%= request.getAttribute("sexo") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
 			 </p>
 			 
 			  <p>
@@ -60,13 +60,15 @@
 			 
 			 <p>
 				<label for="nome" class="labelFormularioServidor">Estado Civil:</label>
-				<input type="radio" id="estadoCivil" class="inputFormularioServidor" name="estadoCivil" value="solteiro"> Solteiro(a) <% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
-				<input type="radio" id="estadoCivil" class="inputFormularioServidor" name="estadoCivil" value="casado"> Casado(a) <% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
-				<input type="radio" id="estadoCivil" class="inputFormularioServidor" name="estadoCivil" value="viuvo"> Viúvo(a) <% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
-			 	<input type="radio" id="estadoCivil" class="inputFormularioServidor" name="estadoCivil" value="separado"> Separado(a) <% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
-			 	<input type="radio" id="estadoCivil" class="inputFormularioServidor" name="estadoCivil" value="divorciado"> Divorciado(a) <% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
-				<input type="radio" id="estadoCivil" class="inputFormularioServidor" name="estadoCivil" value="uniaoEstavel"> União Estavel <% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
-			 	
+				<form>
+				<select name ="estadocivil"> <option value="solteiro">Solteiro(a)<% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
+				<option value="casado">Casado(a) <% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
+				<option value="viuvo">Viúvo(a) <% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
+			 	<option value="separado">Separado(a)<% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
+			 	<option value="divorciado">Divorciado(a)<% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
+				<option value="uniaoEstavel">União Estável<% if (request.getAttribute("estadoCivil") != null) { %> value="<%= request.getAttribute("estadoCivil") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>
+			 	</select>
+			 	</form>
 			 </p>
 			 
 			  <p>

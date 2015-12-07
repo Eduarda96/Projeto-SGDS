@@ -2,7 +2,7 @@
 
 <div id="main">
 	<br>
-	<h1>CONTEUDO AKIIIIII !!!</h1>
+	<h1>Futura lista de Servidores.</h1>
 </div>
 
 <%@include file="rodape.jsp" %>
