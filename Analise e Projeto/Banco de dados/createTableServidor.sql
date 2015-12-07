@@ -1,10 +1,10 @@
-CREATE database sgds_banco;
+#CREATE database sgds_banco;
 
-USE sgds_banco;
+#USE sgds_banco;
 
-CREATE USER 'usersgds'@'localhost' IDENTIFIED BY 'bundamole';
+#CREATE USER 'usersgds'@'localhost' IDENTIFIED BY 'bundamole';
 
-GRANT SELECT, INSERT, UPDATE, DELETE, EXECUTE, SHOW VIEW ON sgds_banco.* TO 'usersgds'@'localhost';
+#GRANT SELECT, INSERT, UPDATE, DELETE, EXECUTE, SHOW VIEW ON sgds_banco.* TO 'usersgds'@'localhost';
 
 CREATE table SERVIDOR(
 	codServidor int unsigned NOT NULL auto_increment,
