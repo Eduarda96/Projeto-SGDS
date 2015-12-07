@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.ifrs.restinga.sgds.modelo.Servidor;
+import br.edu.ifrs.restinga.sgds.modelo.ServidorDAO;
+import sun.text.normalizer.UBiDiProps;
+
 /**
  * Servlet implementation class AutenticaUsuario
  */
@@ -24,12 +28,34 @@ public class AutenticarUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			request.setCharacterEncoding("UTF-8");
-			//String login = request.getParameter("usuario");
-			//String password = request.getParameter("senha");
-			request.getRequestDispatcher("main.jsp").forward(request, response);
+			// String login = request.getParameter("usuario");
+			// String password = request.getParameter("senha");
+			// request.getRequestDispatcher("main.jsp").forward(request, response);
+			Logar(request, response);
 		} catch (Exception e) {
 			request.setAttribute("erro", "Não chama o jsp");
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
+		}
+	}
+
+	protected void Logar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			String matricula = request.getParameter("usuario");
+			String senha = request.getParameter("senha");
+			ServidorDAO dao = new ServidorDAO();
+			Servidor usuario = dao.efetuarLogin(matricula, senha);
+			
+			if(usuario != null) {
+				request.getSession().setAttribute("usuarioLogado", usuario);
+				request.getRequestDispatcher("main.jsp").forward(request, response);
+			} else {
+				request.setAttribute("msg", "Usuario ou senha incorreto.");
+				request.getRequestDispatcher("index.html").forward(request, response);
+			}
+		} catch (Exception e) {
+			request.setAttribute("msg", e.getMessage());
+			request.getRequestDispatcher("index.html").forward(request, response);
 		}
 	}
 
