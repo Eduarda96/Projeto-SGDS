@@ -23,12 +23,12 @@ public class ServidorDAO {
 	private static final String sqlAlterarServidor = "UPDATE SERVIDOR SET nome = ?, nomeMae = ?, nomePai = ?, matriculaSiape = ?, senha = ?, perfil = ?, sexo = ?, dataNascimento = ?, estadoCivil = ?, endereco = ?, numeroComplemento = ?, bairro = ?, cep = ?, cidade = ?, estado = ?, telefoneResidencial = ?, telefoneCelular = ?, status = ? WHERE (codServidor = ?) ";
 	private static final String sqlVerificarNomeServidor = "SELECT COUNT(*) AS verificar FROM SERVIDOR WHERE ((nome = ?) AND (status= 1))";
 	private static final String sqlConsultarServidorNome = "SELECT codServidor, nome, nomeMae, nomePai, matriculaSiape, senha, perfil, sexo, dataNascimento, estadoCivil, endereco, numeroComplemento, bairro, cep, cidade, estado, telefoneResidencial, telefoneCelular FROM SERVIDOR WHERE nome LIKE ? AND status = 1;";
-	private static final String sqlEfetuarLogin = "SELECT codServidor, nome, nomeMae, nomePai, matriculaSiape, senha, perfil, sexo, dataNascimento, estadoCivil, endereco, numeroComplemento, bairro, cep, cidade, estado, telefoneResidencial, telefoneCelular FROM SERVIDOR WHERE matriculaSiape = ? AND senha = ? AND status = 1;";
+	private static final String sqlEfetuarLogin = "SELECT codServidor, nome, nomeMae, nomePai, matriculaSiape, senha, perfil, sexo, dataNascimento, estadoCivil, endereco, numeroComplemento, bairro, cep, cidade, estado, telefoneResidencial, telefoneCelular FROM SERVIDOR WHERE matriculaSiape = ? AND senha = ? AND status = 1 LIMIT 1;";
 
 	ResultSet retorno;
 
 	String msg = null;
-
+	
 	public String cadastrar(Servidor servidor) throws Exception {
 		Connection conexao = null;
 
@@ -202,35 +202,44 @@ public class ServidorDAO {
 
 	public Servidor efetuarLogin(String matricula, String senha) throws Exception {
 		Connection conexao = null;
-		Servidor retornarServidor = new Servidor();
+		Servidor retornarLogin = new Servidor();
+		
 		try {
 			conexao = SGDSConexao.getSGDSConexao();
 			comando = conexao.prepareStatement(sqlEfetuarLogin);
+			System.out.println(matricula);
 			comando.setString(1, matricula);
+			System.out.println(senha);
 			comando.setString(2, senha);
 			retorno = comando.executeQuery();
 
-			retorno.next();
+			retornarLogin = null;
 
-			retornarServidor.setNome(retorno.getString("nome"));
-			retornarServidor.setNomeMae(retorno.getString("nomeMae"));
-			retornarServidor.setNomePai(retorno.getString("nomePai"));
-			retornarServidor.setMatriculaSiape(retorno.getString("matriculaSiape"));
-			retornarServidor.setSenha(retorno.getString("senha"));
-			retornarServidor.setPerfil(retorno.getString("perfil"));
-			retornarServidor.setSexo(retorno.getString("sexo"));
-			retornarServidor.setDataNascimento(retorno.getDate("dataNascimento"));
-			retornarServidor.setEstadoCivil(retorno.getString("estadoCivil"));
-			retornarServidor.setEndereco(retorno.getString("endereco"));
-			retornarServidor.setNumeroComplemento(retorno.getString("numeroComplemento"));
-			retornarServidor.setBairro(retorno.getString("bairro"));
-			retornarServidor.setCep(retorno.getString("cep"));
-			retornarServidor.setCidade(retorno.getString("cidade"));
-			retornarServidor.setTelefoneResidencial(retorno.getString("telefoneResidencial"));
-			retornarServidor.setTelefoneCelular(retorno.getString("telefoneCelular"));
-			retornarServidor.setStatus(retorno.getInt("status"));
+			while (retorno.next()) {
 
-			return retornarServidor;
+				retornarLogin = new Servidor();
+				
+				retornarLogin.setNome(retorno.getString("nome"));
+				retornarLogin.setNomeMae(retorno.getString("nomeMae"));
+				retornarLogin.setNomePai(retorno.getString("nomePai"));
+				retornarLogin.setMatriculaSiape(retorno.getString("matriculaSiape"));
+				retornarLogin.setSenha(retorno.getString("senha"));
+				retornarLogin.setPerfil(retorno.getString("perfil"));
+				retornarLogin.setSexo(retorno.getString("sexo"));
+				retornarLogin.setDataNascimento(retorno.getDate("dataNascimento"));
+				retornarLogin.setEstadoCivil(retorno.getString("estadoCivil"));
+				retornarLogin.setEndereco(retorno.getString("endereco"));
+				retornarLogin.setNumeroComplemento(retorno.getString("numeroComplemento"));
+				retornarLogin.setBairro(retorno.getString("bairro"));
+				retornarLogin.setCep(retorno.getString("cep"));
+				retornarLogin.setCidade(retorno.getString("cidade"));
+				retornarLogin.setTelefoneResidencial(retorno.getString("telefoneResidencial"));
+				retornarLogin.setTelefoneCelular(retorno.getString("telefoneCelular"));
+				// System.out.println(retorno.getInt("status"));
+				// retornarServidor.setStatus(retorno.getInt("status"));
+			}
+
+			return retornarLogin;
 		} catch (SQLException e) {
 			System.out.println("Falha de comunicação.");
 		} finally {
@@ -239,7 +248,7 @@ public class ServidorDAO {
 			if (conexao != null)
 				conexao.close();
 		}
-		return retornarServidor;
+		return retornarLogin;
 	}
 
 }

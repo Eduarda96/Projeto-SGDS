@@ -51,7 +51,7 @@ public class AutenticarUsuario extends HttpServlet {
 				request.getRequestDispatcher("main.jsp").forward(request, response);
 			} else {
 				request.setAttribute("msg", "Usuario ou senha incorreto.");
-				request.getRequestDispatcher("index.html").forward(request, response);
+				request.getRequestDispatcher("autenticar.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			request.setAttribute("msg", e.getMessage());

@@ -1,14 +1,15 @@
-<!DOCTYPE HTML>
-<html lang="pt-br">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="./css/estilo.css">
 <script type="text/javascript" src="./js/config.js"></script>
-<meta http-equiv="refresh" content="3;url=autenticar.jsp">
 <title>Login</title>
 </head>
 <body>
-	<!-- <% String mensagem = (String) request.getAttribute("msg");
+	<% String mensagem = (String) request.getAttribute("msg");
 	 	if (mensagem	!= null) { %>
 			<script type="text/javascript">mostrar('<%=mensagem%>')</script>
 		<% }
@@ -19,7 +20,7 @@
 			action="AutenticarUsuario" method="post">
 			<fieldset id="campoLogin">
 				<p class="usuario">
-					<label for="usuario" class="labelLogin">Usu√°rio:</label> <input
+					<label for="usuario" class="labelLogin">Usu·rio:</label> <input
 						type="text" id="usuario" class="formularioLogin"
 						required="required" name="usuario">
 				</p>
@@ -35,6 +36,6 @@
 				</p>
 			</fieldset>
 		</form>
-	</div> -->
+	</div>
 </body>
 </html>
