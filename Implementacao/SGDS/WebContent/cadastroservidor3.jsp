@@ -1,19 +1,29 @@
+<%@page import="br.edu.ifrs.restinga.sgds.modelo.Servidor"%>
 <%@include file="cabecalho.jsp" %>
 <%
 	int cod = 0;	
 	String acao = (String) request.getAttribute("acao");
 	if (request.getAttribute("codigo") != null)
 		cod = Integer.parseInt(""+request.getAttribute("codigo"));
+	
+	Servidor cad = new Servidor();
+	String passe = request.getParameter("cad");
+	cad = Servidor.class.cast(passe);
 %>
 <div id="main">
 	<div id="divForm">
 		<form name="formcadrhservidor" id="formCadastroServidor" action="ControleServidor" method="post"> 
 			<input type="hidden" id="acao" name="acao" value="<%= acao %>">
 			<input type="hidden" id="codigo" name="codigo" value="<%= cod %>"> 
-			<script>alert(<%= request.getAttribute("acao")%>);</script>
+			<%-- <script>alert(<%= request.getAttribute("acao")%>);</script> --%>
 			<p>
 				<label for="nome" class="labelFormularioServidor">Endereço:</label>
 				<input type="nome" id="endereco" class="inputFormularioServidor" name="endereco" <% if (request.getAttribute("endereco") != null) { %> value="<%= request.getAttribute("endereco") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>>
+			</p>
+			
+			<p>
+				<label for="nome" class="labelFormularioServidor">AQUI:</label>
+				<input type="nome" id="endereco" class="inputFormularioServidor" name="endereco" value="<%= cad.getNome() %>" <% if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>>
 			</p>
 			 
 			<p>

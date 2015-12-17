@@ -4,13 +4,14 @@
 	String acao = (String) request.getAttribute("acao");
 	if (request.getAttribute("codigo") != null)
 		cod = Integer.parseInt(""+request.getAttribute("codigo"));
+	
 %>
 <div id="main">
 	<div id="divForm">
-		<form name="formcadrhservidor" id="formCadastroServidor" action="ControleServidor" method="post"> 
+		<form name="formcadrhservidor" id="formCadastroServidor" action="cadastroservidor2.jsp" method="post"> 
 			<input type="hidden" id="acao" name="acao" value="<%= acao %>">
 			<input type="hidden" id="codigo" name="codigo" value="<%= cod %>"> 
-			<script>alert(<%= request.getAttribute("acao")%>);</script>
+			<%-- <script>alert(<%= request.getAttribute("acao")%>);</script> --%>
 			<p>
 				<label for="nome" class="labelFormularioServidor">Nome:</label>
 				<input type="text" id="nome" class="inputFormularioServidor" required="required" name="nome" <% if (request.getAttribute("nome") != null) { %> value="<%= request.getAttribute("nome") %>" <% } if (request.getAttribute("acao") == "visualizar") {%> readonly="true" <% } %>>
