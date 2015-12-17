@@ -153,7 +153,7 @@ public class ControleServidor extends HttpServlet {
 			ServidorDAO cadastrarDAO = new ServidorDAO();
 
 			if (!erro) {
-				int test = cadastrarDAO.verificarMatriculaServidor(cadastrar.getMatriculaSiape());
+				int test = cadastrarDAO.VerificarMatriculaServidor(cadastrar.getMatriculaSiape());
 			
 				if (test != 0) {
 					request.setAttribute("msg", "Nome do setor ja cadastrado.");

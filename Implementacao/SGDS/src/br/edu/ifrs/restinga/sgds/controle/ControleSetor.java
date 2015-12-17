@@ -180,7 +180,7 @@ public class ControleSetor extends HttpServlet {
 			SetorDAO cadastrarDAO = new SetorDAO();
 
 			if (!erro) {
-				int test = cadastrarDAO.VerificarNomeSetor(cadastrar.getNome());
+				int test = cadastrarDAO.verificarNomeSetor(cadastrar.getNome());
 			
 				if (test != 0) {
 					request.setAttribute("msg", "Nome do setor ja cadastrado.");
