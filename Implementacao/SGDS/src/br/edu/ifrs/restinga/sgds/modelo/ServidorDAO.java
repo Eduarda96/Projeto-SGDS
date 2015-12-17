@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ServidorDAO {
+public class ServidorDAO {	
 	
-	public class SetorDAO {
 		// Manipular classe Setor no Banco;
 		PreparedStatement comando;
 		private static final String sqlSelecaoServidorResponsavel = "SELECT codServidor, nome FROM SERVIDOR WHERE status = 1;";
@@ -22,7 +21,7 @@ public class ServidorDAO {
 				+ "FROM SERVIDOR WHERE status = 1;";
 		private static final String sqlDeletarServidor = "UPDATE SERVIDOR SET status = 0  WHERE (codServidor = ?) ";
 		private static final String sqlAlterarServidor = "UPDATE SERVIDOR SET nome = ?, nomeMae = ?, nomePai = ?, matriculaSiape = ?, senha = ?, perfil = ?, sexo = ?, dataNascimento = ?, estadoCivil = ?, endereco = ?, numeroComplemento = ?, bairro = ?, cep = ?, cidade = ?, estado = ?, telefoneResidencial = ?, telefoneCelular = ?, status = ? WHERE (codServidor = ?) ";
-		private static final String sqlVerificarNomeServidor = "SELECT COUNT(*) AS verificar FROM SERVIDOR WHERE ((nome = ?) AND (status= 1))";
+		private static final String sqlVerificarMatriculaServidor = "SELECT COUNT(*) AS verificar FROM SERVIDOR WHERE ((matriculaSiape = ?) AND (status= 1))";
 		private static final String sqlConsultarServidorNome = "SELECT codServidor, nome, nomeMae, nomePai, matriculaSiape, senha, perfil, sexo, dataNascimento, estadoCivil, endereco, numeroComplemento, bairro, cep, cidade, estado, telefoneResidencial, telefoneCelular FROM SERVIDOR WHERE nome LIKE ? AND status = 1;";
 		
 		ResultSet retorno;
@@ -38,7 +37,7 @@ public class ServidorDAO {
 				comando.setString(1, servidor.getNome());
 				comando.setString(2, servidor.getNomeMae());
 				comando.setString(3, servidor.getNomePai());
-				comando.setInt(4, servidor.getMatriculaSiape());
+				comando.setString(4, servidor.getMatriculaSiape());
 				comando.setString(5, servidor.getSenha());
 				comando.setString(6, servidor.getPerfil());
 				comando.setString(7, servidor.getSexo());
@@ -77,7 +76,7 @@ public class ServidorDAO {
 				comando.setString(1, servidor.getNome());
 				comando.setString(2, servidor.getNomeMae());
 				comando.setString(3, servidor.getNomePai());
-				comando.setInt(4, servidor.getMatriculaSiape());
+				comando.setString(4, servidor.getMatriculaSiape());
 				comando.setString(5, servidor.getSenha());
 				comando.setString(6, servidor.getPerfil());
 				comando.setString(7, servidor.getSexo());
@@ -110,11 +109,6 @@ public class ServidorDAO {
 
 			try {
 				conexao = SGDSConexao.getSGDSConexao();
-				comando = conexao.prepareStatement(sqlVerificarNomeServidor);
-				comando.setInt(1, cod);
-
-				retorno = comando.executeQuery();
-				retorno.next();
 				comando = conexao.prepareStatement(sqlDeletarServidor);
 				comando.setInt(1, cod);
 				comando.execute();
@@ -145,7 +139,7 @@ public class ServidorDAO {
 				retornarServidor.setNome(retorno.getString("nome"));
 				retornarServidor.setNomeMae(retorno.getString("nomeMae"));
 				retornarServidor.setNomePai(retorno.getString("nomePai"));
-				retornarServidor.setMatriculaSiape(retorno.getInt("matriculaSiape"));
+				retornarServidor.setMatriculaSiape(retorno.getString("matriculaSiape"));
 				retornarServidor.setSenha(retorno.getString("senha"));
 				retornarServidor.setPerfil(retorno.getString("perfil"));
 				retornarServidor.setSexo(retorno.getString("sexo"));
@@ -172,7 +166,7 @@ public class ServidorDAO {
 			return retornarServidor;
 		}
 
-		public List<Servidor> ConsultarServidoresAtivos() throws Exception {
+		public List<Servidor> consultarServidoresAtivos() throws Exception {
 			Connection conexao = null;
 			List<Servidor> servidores = new ArrayList<Servidor>();
 			try {
@@ -184,12 +178,13 @@ public class ServidorDAO {
 					Servidor servidor = new Servidor();
 										
 					servidor.setNome(retorno.getString("nome"));
-					servidor.setMatriculaSiape(retorno.getInt("matriculaSiape"));
+					servidor.setMatriculaSiape(retorno.getString("matriculaSiape"));
 					servidor.setPerfil(retorno.getString("perfil"));			
 					servidor.setStatus(retorno.getInt("status"));
 					
 					servidores.add(servidor);
 				}
+				return servidores;
 			} catch (SQLException e) {
 				System.out.println("Não foi possivel conectar!\n" + e.getMessage());
 			} finally {
@@ -200,7 +195,30 @@ public class ServidorDAO {
 			}
 			return servidores;
 		}
+		
+		public int verificarMatriculaServidor(String matriculaSiape) throws Exception {
+			Connection conexao = null;
+			int cont = 0;
+			try {
+				conexao = SGDSConexao.getSGDSConexao();
+				comando = conexao.prepareStatement(sqlVerificarMatriculaServidor);
+				comando.setString(1, matriculaSiape);
+
+				retorno = comando.executeQuery();
+				retorno.next();
+				cont = Integer.parseInt(retorno.getString("verificar"));
+
+			} catch (SQLException e) {
+				msg = "Nao foi possivel verificar!\n" + e.getMessage();
+			} finally {
+				if (comando != null)
+					comando.close();
+				if (conexao != null)
+					conexao.close();
+			}
+			return cont;
+		}
 
 	}
 	
-}
+

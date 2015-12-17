@@ -8,7 +8,7 @@ public class Servidor {
 	private String nome;
 	private String nomeMae;
 	private String nomePai;
-	private int matriculaSiape;
+	private String matriculaSiape;
 	private String senha;
 	private String perfil;
 	private String sexo; 
@@ -83,10 +83,10 @@ public class Servidor {
 	public void setNomePai(String nomePai) {
 		this.nomePai = nomePai;
 	}
-	public int getMatriculaSiape() {
+	public String getMatriculaSiape() {
 		return matriculaSiape;
 	}
-	public void setMatriculaSiape(int matriculaSiape) {
+	public void setMatriculaSiape(String matriculaSiape) {
 		this.matriculaSiape = matriculaSiape;
 	}
 	public String getSenha() {
