@@ -278,7 +278,7 @@ public class SetorDAO {
 		return ativos;
 	}
 
-	public int VerificarNomeSetor(String nome) throws Exception {
+	public int verificarNomeSetor(String nome) throws Exception {
 		Connection conexao = null;
 		int cont = 0;
 		try {
